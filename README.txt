@@ -1,7 +1,7 @@
 Members:
 Jonah Cantello #300112348
-Comtois Amélie
-Nastexa Farah
+Comtois Amélie 
+Nastexa Farah #300018467
 Derek Hacault-Parodi #300122544
 Ansh Patel #300102472
 
