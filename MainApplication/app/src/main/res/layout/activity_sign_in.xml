@@ -15,6 +15,7 @@
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Welcome"
             android:textSize="36sp"
             android:textStyle="bold" />
@@ -62,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:text="Don't have an account?" />
+            android:text="Don't have an account?"
+            android:textColor="#4B3EFF" />
     </LinearLayout>
 </RelativeLayout>
