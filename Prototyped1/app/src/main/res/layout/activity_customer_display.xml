@@ -55,5 +55,5 @@
       android:background="#FFFFFF"
       android:backgroundTint="@android:color/holo_orange_dark"
       android:fontFamily="sans-serif"
-      android:textSize="25" />
+      android:textSize="25dp" />
 </RelativeLayout>
