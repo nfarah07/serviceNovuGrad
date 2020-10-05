@@ -2,6 +2,10 @@ package com.example.servicenovigrad;
 
 public class Service {
 
-    private int cost;
+    private double cost;
+
+    public Service(double cost) {
+        this.cost=cost;
+    }
 
 }
