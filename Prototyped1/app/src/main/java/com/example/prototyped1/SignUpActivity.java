@@ -31,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     private RadioGroup fieldUserTypeSelection;
     private Button btnSignUp;
     private TextView signIn;
-    private char userType;
+    private String userType;
     private ProgressBar loading;
     //firebase stuff
     private DatabaseReference ref;
@@ -49,13 +49,13 @@ public class SignUpActivity extends AppCompatActivity {
         fieldUserTypeSelection = findViewById(R.id.userType);
         signIn= findViewById(R.id.AlreadyUser);
         btnSignUp = findViewById(R.id.SignUp);
-        loading.setVisibility(View.GONE);
+//        loading.setVisibility(View.GONE);
 
 
         //  CurrentInstance  of the databases from FireBase
         mAuth = FirebaseAuth.getInstance();
         loading = findViewById(R.id.signUpProgressBar);
-        loading.setVisibility(View.GONE);
+        loading.setVisibility(View.INVISIBLE);
 
         // We need to handle the sign up Button
 
@@ -80,6 +80,13 @@ public class SignUpActivity extends AppCompatActivity {
         //        });
 
 
+    }
+
+    public void onClickHaveAccount(View v) {
+        Intent intent;
+        intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -108,7 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 // Store in database
                                 ref = FirebaseDatabase.getInstance().getReference();
 
-                                if (userType == 'C') {
+                                if (userType == "C") {
                                     Customer newUser = new Customer(email, hashedPwd, firstName, lastName,userType);
                                     //send info to firebase
 
@@ -119,8 +126,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     // getApplicationContext() == This.Screen to -> CustomerDisplayActivity
                                     Intent intent;
                                     intent = new Intent(getApplicationContext(),CDisplayActivity.class);
-                                    intent.putExtra("USER_FIRSTNAME", firstName);
-                                    intent.putExtra("USER_LastNAME", firstName);
+//                                    intent.putExtra("USER_FIRSTNAME", firstName);
+//                                    intent.putExtra("USER_LASTNAME", lastName);
                                     intent.putExtra("USER_INFO",  newUser);
                                     startActivity(intent);
                                     finish();
@@ -128,7 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                                 // userType == 'E'
                                 else {
-                                    Employee newUser2 = new Employee(email, hashedPwd, firstName, lastName,userType);
+                                    Employee newUser2 = new Employee(firstName, lastName, email, pwd,userType);
                                     // Send to firebase
 
                                     // Basics : When we write to the database we use the setValue() method and pass in the value that corresponds to the appropriate child key:
@@ -140,13 +147,13 @@ public class SignUpActivity extends AppCompatActivity {
 
                                     // This will now Display You have Succesfully signed up.
                                     // getApplicationContext() == This.Screen to -> CustomerDisplayActivity
-                                    Intent intent;
-                                    intent = new Intent(getApplicationContext(),CDisplayActivity.class);
-                                    intent.putExtra("USER_FIRSTNAME", firstName);
-                                    intent.putExtra("USER_LastNAME", firstName);
-                                    intent.putExtra("USER_INFO",  newUser2);
-                                    startActivity(intent);
-                                    finish();
+//                                    Intent intent;
+//                                    intent = new Intent(getApplicationContext(),CDisplayActivity.class);
+//                                    intent.putExtra("USER_FIRSTNAME", firstName);
+//                                    intent.putExtra("USER_LastNAME", firstName);
+//                                    intent.putExtra("USER_INFO",  newUser2);
+//                                    startActivity(intent);
+//                                    finish();
 
                                 }
 
@@ -168,10 +175,10 @@ public class SignUpActivity extends AppCompatActivity {
         int selectedID = fieldUserTypeSelection.getCheckedRadioButtonId();
 
         if (selectedID == R.id.btnScustomer) {
-            userType = 'E';
+            userType = "C";
         }
         else if (selectedID == R.id.btnSEmployee) {
-            userType = 'C';
+            userType = "E";
         }
     }
 

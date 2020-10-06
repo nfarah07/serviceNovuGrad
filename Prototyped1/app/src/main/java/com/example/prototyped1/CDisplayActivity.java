@@ -15,7 +15,8 @@ public class CDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        user = (Customer) getIntent().getSerializableExtra("USER_DATA");
+        user = (Customer) getIntent().getSerializableExtra("USER_INFO");
+//        getIntent().getSerializableExtra("")
         String userFirstName = user.getNameFirst();
         setContentView(R.layout.activity_customer_display);
         TextView message = (TextView) findViewById(R.id.messageDisplayID);

@@ -7,7 +7,7 @@ public class FieldUtil {
 
     public static boolean fieldsAreValid(String firstName, String lastName, String pwd, Context c) {
         // check name length
-        if (firstName.length() < 3) {
+        if (firstName.length() < 2) {
             Toast.makeText(c, "First name should be at least 3 characters", Toast.LENGTH_LONG).show();
             return false;
         }
