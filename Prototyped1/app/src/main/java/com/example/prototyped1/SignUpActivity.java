@@ -92,6 +92,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onClickSignUpBtn () {
 
+
         final String firstName = fieldFirstName.getText().toString().trim();
         final String lastName = fieldLastName.getText().toString().trim();
         final String email = fieldEmail.getText().toString().trim();
@@ -113,13 +114,14 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Store in database
+                                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                 ref = FirebaseDatabase.getInstance().getReference();
 
                                 if (userType == "C") {
-                                    Customer newUser = new Customer(email, hashedPwd, firstName, lastName,userType);
+                                    Customer newUser = new Customer(firstName, lastName,email, hashedPwd,uid);
                                     //send info to firebase
 
-                                    ref.child("Customer").setValue(newUser);
+                                    ref.child("Customer").child(uid).setValue(newUser);
 
 
                                     // This will now Display You have Succesfully signed up.
@@ -135,25 +137,24 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                                 // userType == 'E'
                                 else {
-                                    Employee newUser2 = new Employee(firstName, lastName, email, pwd,userType);
+                                    Employee newUser2 = new Employee(firstName, lastName, email, hashedPwd,uid);
                                     // Send to firebase
 
                                     // Basics : When we write to the database we use the setValue() method and pass in the value that corresponds to the appropriate child key:
 
                                    //  Basics :  ref.child("<childNodeName>").setValue("<someValue>");
 
-                                    ref.child("Employee").setValue(newUser2);
+                                    ref.child("Employees").child(uid).setValue(newUser2);
+                                    Intent intent;
+                                    intent = new Intent(getApplicationContext(),CDisplayActivity.class);
+                                    intent.putExtra("USER_INFO",  newUser2);
+                                    startActivity(intent);
+                                    finish();
 
 
                                     // This will now Display You have Succesfully signed up.
                                     // getApplicationContext() == This.Screen to -> CustomerDisplayActivity
-//                                    Intent intent;
-//                                    intent = new Intent(getApplicationContext(),CDisplayActivity.class);
-//                                    intent.putExtra("USER_FIRSTNAME", firstName);
-//                                    intent.putExtra("USER_LastNAME", firstName);
-//                                    intent.putExtra("USER_INFO",  newUser2);
-//                                    startActivity(intent);
-//                                    finish();
+
 
                                 }
 

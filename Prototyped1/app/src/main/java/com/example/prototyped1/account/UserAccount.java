@@ -3,12 +3,12 @@ package com.example.prototyped1.account;
 public abstract class UserAccount extends Account {
     private String nameFirst;
     private String nameLast;
-    private String role;
+    private String id;
 
 
-    public UserAccount(String nameFirst,  String nameLast, String email, String password, String role) {
+    public UserAccount(String nameFirst,  String nameLast, String email, String password, String id) {
         super(email, password);
-        this.role = role;
+        this.id = id;
         this.nameFirst = nameFirst;
         this.nameLast = nameLast;
     }
@@ -17,7 +17,7 @@ public abstract class UserAccount extends Account {
         return nameFirst;
     }
 
-    public String getRole(){return role;}
+    public String getID(){return id;}
 
     public String getNameLast() {
         return nameLast;

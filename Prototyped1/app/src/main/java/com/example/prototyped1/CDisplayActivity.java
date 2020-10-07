@@ -8,20 +8,30 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.prototyped1.account.Customer;
+import com.example.prototyped1.account.Employee;
+import com.example.prototyped1.account.UserAccount;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CDisplayActivity extends AppCompatActivity {
-    private Customer user;
+    private UserAccount user;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        user = (Customer) getIntent().getSerializableExtra("USER_INFO");
+        user = (UserAccount) getIntent().getSerializableExtra("USER_INFO");
 //        getIntent().getSerializableExtra("")
         String userFirstName = user.getNameFirst();
         setContentView(R.layout.activity_customer_display);
         TextView message = (TextView) findViewById(R.id.messageDisplayID);
+        if (user instanceof Customer){
+            message.setText( " Welcome " + userFirstName + "! You are logged in as a Customer");
 
-        message.setText( " Welcome" + userFirstName + "! You are logged in as a Customer.");
+        }
+        if(user instanceof Employee){
+            message.setText( " Welcome " + userFirstName + "! You are logged in as a Employee");
+
+        }
+
+
     }
 
 
