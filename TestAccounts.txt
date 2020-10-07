@@ -1,0 +1,15 @@
+Admin:
+	Email: admin
+	Password: admin
+
+Customer:
+	Email: customer@email.com
+	Password: customer
+	First name: Customer
+	Last name: Test
+
+Employee:
+	Email: employee@email.com
+	Password: employee
+	First name: Employee
+	Last name: Test

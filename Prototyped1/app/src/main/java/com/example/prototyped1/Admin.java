@@ -1,4 +1,4 @@
-package com.example.prototyped1.account;
+package com.example.prototyped1;
 
 
 

@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.prototyped1.account.Customer;
-import com.example.prototyped1.account.Employee;
-import com.example.prototyped1.account.UserAccount;
+import com.example.prototyped1.Customer;
+import com.example.prototyped1.Employee;
+import com.example.prototyped1.UserAccount;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CDisplayActivity extends AppCompatActivity {

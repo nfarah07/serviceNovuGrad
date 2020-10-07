@@ -1,5 +1,5 @@
 
-package com.example.prototyped1.account;
+package com.example.prototyped1;
 import java.io.Serializable;
 public class Account implements Serializable {
 
