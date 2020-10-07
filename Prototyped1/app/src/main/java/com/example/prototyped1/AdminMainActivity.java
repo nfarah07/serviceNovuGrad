@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.prototyped1.account.Account;
 import com.example.prototyped1.account.Admin;
 import com.example.prototyped1.account.UserAccount;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,5 +1,6 @@
 package com.example.prototyped1.account;
 
+
 public abstract class UserAccount extends Account {
     private String nameFirst;
     private String nameLast;

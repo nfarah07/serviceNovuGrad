@@ -20,62 +20,58 @@
             app:layout_constraintVertical_bias="1.0">
 
         <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="65dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="65dp"
-                android:fontFamily="cursive"
-                android:text="           WELCOME "
-                android:textSize="30sp"/>
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="cursive"
+            android:text="WELCOME "
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
         <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="180dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="cursive"
-                android:text=" TO"
-                android:textSize="30sp"/>
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="cursive"
+            android:text="TO"
+            android:textAlignment="center"
+            android:textSize="30sp" />
 
         <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="65dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="65dp"
-                android:fontFamily="cursive"
-                android:text="            Service Novigrad"
-                android:textColor="#94E2EC"
-                android:textColorHighlight="@color/colorAccent"
-                android:textSize="25sp"/>
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="cursive"
+            android:text="Service Novigrad"
+            android:textAlignment="center"
+            android:textColor="#94E2EC"
+            android:textColorHighlight="@color/colorAccent"
+            android:textSize="25sp" />
 
         <EditText
-                android:id="@+id/Email"
-                android:layout_width="318dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="55dp"
-                android:background="#E49521"
-                android:backgroundTint="#009688"
-                android:ems="10"
-                android:inputType="textWebEmailAddress"
-                android:hint="email"/>
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginTop="5dp"
+            android:background="#E49521"
+            android:backgroundTint="#009688"
+            android:ems="10"
+            android:hint="email"
+            android:inputType="textWebEmailAddress" />
+
         <EditText
-                android:id="@+id/Password"
-                android:layout_width="318dp"
-                android:layout_height="39dp"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="55dp"
-                android:background="#E49521"
-                android:backgroundTint="#009688"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:hint="Password"/>
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginTop="5dp"
+            android:background="#E49521"
+            android:backgroundTint="#009688"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
         <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -99,17 +95,17 @@
 
 
         <TextView
-                android:id="@+id/redirectSignup"
-                android:layout_width="wrap_content"
-                android:layout_height="31dp"
-                android:background="#2571AE"
-                android:backgroundTint="#268A80"
-                android:clickable="true"
-                android:linksClickable="false"
-                android:longClickable="false"
-                android:onClick="onSignUp"
-                android:text="not registered? sign up here!"
-                android:textColor="@android:color/black"/>
+            android:id="@+id/redirectSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#2571AE"
+            android:backgroundTint="#268A80"
+            android:clickable="true"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:onClick="onSignUp"
+            android:text="not registered? sign up here!"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
 

@@ -60,8 +60,9 @@
 
         <EditText
             android:id="@+id/FirstName"
-            android:layout_width="404dp"
+            android:layout_width="match_parent"
             android:layout_height="42dp"
+            android:layout_marginTop="5dp"
             android:background="#E49521"
             android:backgroundTint="#009688"
             android:ems="10"
@@ -72,6 +73,7 @@
             android:id="@+id/LastName"
             android:layout_width="410dp"
             android:layout_height="39dp"
+            android:layout_marginTop="5dp"
             android:background="#E49521"
             android:backgroundTint="#009688"
             android:ems="10"
@@ -82,7 +84,7 @@
             android:id="@+id/Email"
             android:layout_width="404dp"
             android:layout_height="38dp"
-            android:layout_marginStart="4dp"
+            android:layout_marginTop="5dp"
             android:background="#E49521"
             android:backgroundTint="#009688"
             android:ems="10"
@@ -93,6 +95,7 @@
             android:id="@+id/Password"
             android:layout_width="406dp"
             android:layout_height="39dp"
+            android:layout_marginTop="5dp"
             android:background="#E49521"
             android:backgroundTint="#009688"
             android:ems="10"
@@ -101,8 +104,9 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="138dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="#FFFFFF"
             android:text="Please Select a Role" />
 
@@ -111,7 +115,7 @@
             android:layout_width="216dp"
             android:layout_height="wrap_content"
 
-            >
+            android:layout_marginTop="5dp">
 
             <RadioButton
                 android:id="@+id/btnScustomer"
