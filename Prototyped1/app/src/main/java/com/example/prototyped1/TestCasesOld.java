@@ -2,7 +2,7 @@ package com.example.prototyped1;
 
 import android.os.Bundle;
 
-public class TestCases {
+public class TestCasesOld {
 
     public static void main( String[] argv ) {
 
