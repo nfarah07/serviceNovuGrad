@@ -1,0 +1,58 @@
+class Account
+{
+  email;
+  passwords;
+}
+
+class UserAccount
+{
+  isA Account;
+  firstName;
+  lastName;
+  username;
+  role;
+}
+
+class Employee 
+{
+  isA UserAccount;
+  Branch worksAt;
+  public void editWorkingHours(){}
+
+}
+
+class Customer
+{
+    isA UserAccount;
+}
+
+class Administrator
+{
+  isA Account;
+  public void createService(){}
+  public void deleteService(){}
+  public void alterService(){}
+  public void deleteCustomerAccount(){}
+  public void deleteBranchAccount(){}
+}
+
+class Branch
+{
+  User[] workforce;
+  Service[] services;
+  Double startHour;
+  Double endHour;
+  public void addServiceToBranch(){}
+  public void removeServiceToBranch(){}
+}
+
+class Services
+{
+  Service[] allService;
+}
+
+class Service
+{
+  isA Services;
+  Integer cost;
+}
