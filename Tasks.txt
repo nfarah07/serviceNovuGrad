@@ -1,2 +1,0 @@
-29/09/20: Derek Hacault: Created the README file and this task document
-03/10/20 Derek Hacault: Created the android studio project
