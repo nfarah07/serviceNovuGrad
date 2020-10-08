@@ -6,3 +6,5 @@ Derek Hacault-Parodi #300122544
 Ansh Patel #300102472
 
 Link to repository: https://github.com/SEG2105-uottawa/seg2105f20-project-project_gr-31.git
+
+To perform the test cases, the checkFieldsExist() method must be run.

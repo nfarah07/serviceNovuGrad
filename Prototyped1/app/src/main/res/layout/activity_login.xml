@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1D8EC1"
+    android:backgroundTint="#6D97B8"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="cursive"
+            android:text="WELCOME "
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="cursive"
+            android:text="TO"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="cursive"
+            android:text="Service Novigrad"
+            android:textAlignment="center"
+            android:textColor="#94E2EC"
+            android:textColorHighlight="@color/colorAccent"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginTop="5dp"
+            android:background="#E49521"
+            android:backgroundTint="#009688"
+            android:ems="10"
+            android:hint="email"
+            android:inputType="textWebEmailAddress" />
+
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:layout_marginTop="5dp"
+            android:background="#E49521"
+            android:backgroundTint="#009688"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword" />
+        <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+        </RadioGroup>
+
+
+        <Button
+                android:id="@+id/Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onLoginClicked"
+                android:text="Login"/>
+
+
+        <TextView
+            android:id="@+id/redirectSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#2571AE"
+            android:backgroundTint="#268A80"
+            android:clickable="true"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:onClick="onSignUp"
+            android:text="not registered? sign up here!"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
