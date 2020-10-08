@@ -13,3 +13,9 @@ Employee:
 	Password: employee
 	First name: Employee
 	Last name: Test
+
+Employee2:
+	Email: dave@email.com
+	Password: SafePassword
+	First name: Dave
+	Last name: Jones
