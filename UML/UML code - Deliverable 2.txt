@@ -17,6 +17,11 @@ class Employee
 {
   isA UserAccount;
   Branch worksAt;
+  Service[] services;
+  Double startHour;
+  Double endHour;
+  public void addService(){}
+  public void removeService(){}
   public void editWorkingHours(){}
 
 }
@@ -36,23 +41,9 @@ class Administrator
   public void deleteBranchAccount(){}
 }
 
-class Branch
-{
-  User[] workforce;
-  Service[] services;
-  Double startHour;
-  Double endHour;
-  public void addServiceToBranch(){}
-  public void removeServiceToBranch(){}
-}
-
-class Services
-{
-  Service[] allService;
-}
-
 class Service
 {
-  isA Services;
-  Integer cost;
+  String name;
+  Double cost;
+  String[] documents;
 }
