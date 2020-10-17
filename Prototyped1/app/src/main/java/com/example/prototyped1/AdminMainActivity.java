@@ -33,4 +33,10 @@ public class AdminMainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    public void onServicesList(View view) {
+        Intent intent = new Intent(getApplicationContext(), AdminListActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
