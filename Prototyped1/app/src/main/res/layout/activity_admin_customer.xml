@@ -16,15 +16,14 @@
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
             android:layout_marginStart="65dp"
             android:layout_marginTop="39dp"
             android:layout_marginEnd="65dp"
             android:height="35sp"
             android:fontFamily="cursive"
-            android:text="Customer List"
+            android:gravity="center"
+            android:text="@string/customer_list"
             android:textAlignment="center"
             android:textColor="#94E2EC"
             android:textColorHighlight="@color/colorAccent"
@@ -37,10 +36,10 @@
 
             <Button
                 android:id="@+id/btnDeleteCustomer"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Delete" />
+                android:text="@string/delete" />
         </LinearLayout>
 
         <TextView
@@ -53,7 +52,7 @@
             android:linksClickable="false"
             android:longClickable="false"
             android:onClick="onToWelcome"
-            android:text="Back to Welcome screen"
+            android:text="@string/back_to_welcome_screen"
             android:textColor="@android:color/black" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

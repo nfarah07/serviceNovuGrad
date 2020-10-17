@@ -1,3 +1,37 @@
 <resources>
-    <string name="app_name">PrototypeD1</string>
+    <string name="app_name">ServiceNovigrad</string>
+
+    <string name="welcome">WELCOME</string>
+    <string name="to">to</string>
+    <string name="service_novigrad">Service Novigrad</string>
+
+    <string name="to_services_list">To Services List</string>
+    <string name="to_customer_list">To Customer List</string>
+    <string name="to_branch_list">To Branch List</string>
+
+    <string name="delete">Delete</string>
+    <string name="add_new">Add New</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+
+    <string name="customer_list">Customer List</string>
+    <string name="branch_list">Branch List</string>
+    <string name="services_list">Services List</string>
+
+    <string name="back_to_welcome_screen">Back to Welcome screen</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">email</string>
+    <string name="password">Password</string>
+
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create Account</string>
+    <string name="not_registered_sign_up_here">not registered? sign up here!</string>
+    <string name="already_a_user_login_here">Already a User? Login Here.</string>
+
+    <string name="please_select_a_role">Please Select a Role</string>
+    <string name="employee">Employee</string>
+    <string name="customer">Customer</string>
 </resources>

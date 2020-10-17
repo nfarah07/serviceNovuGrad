@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:fontFamily="cursive"
-            android:text="WELCOME "
+            android:text="@string/welcome"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="cursive"
-            android:text="TO"
+            android:text="@string/to"
             android:textAlignment="center"
             android:textSize="30sp" />
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="cursive"
-            android:text="Service Novigrad"
+            android:text="@string/service_novigrad"
             android:textAlignment="center"
             android:textColor="#94E2EC"
             android:textColorHighlight="@color/colorAccent"
@@ -59,7 +59,7 @@
             android:background="#E49521"
             android:backgroundTint="#009688"
             android:ems="10"
-            android:hint="email"
+            android:hint="@string/email"
             android:inputType="textWebEmailAddress" />
 
         <EditText
@@ -70,7 +70,7 @@
             android:background="#E49521"
             android:backgroundTint="#009688"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
         <RadioGroup
                 android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="onLoginClicked"
-                android:text="Login"/>
+                android:text="@string/login"/>
 
 
         <TextView
@@ -104,7 +104,7 @@
             android:linksClickable="false"
             android:longClickable="false"
             android:onClick="onSignUp"
-            android:text="not registered? sign up here!"
+            android:text="@string/not_registered_sign_up_here"
             android:textColor="@android:color/black" />
     </LinearLayout>
 
