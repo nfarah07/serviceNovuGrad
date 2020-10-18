@@ -11,6 +11,10 @@ public class Account implements Serializable {
         this.password = password;
     }
 
+    public Account() {
+
+    }
+
     public String getEmail() {
         return this.email;
     }

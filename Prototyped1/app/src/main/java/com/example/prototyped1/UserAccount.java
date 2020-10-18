@@ -14,6 +14,10 @@ public abstract class UserAccount extends Account {
         this.nameLast = nameLast;
     }
 
+    public UserAccount() {
+        super();
+    }
+
     public String getNameFirst() {
         return nameFirst;
     }
@@ -30,4 +34,5 @@ public abstract class UserAccount extends Account {
     public void setNameLast(String nameLast) {
         this.nameLast = nameLast;
     }
+
 }

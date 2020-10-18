@@ -34,4 +34,6 @@
     <string name="please_select_a_role">Please Select a Role</string>
     <string name="employee">Employee</string>
     <string name="customer">Customer</string>
+
+    <string name="delete_intructions">To delete, press and hold on the email</string>
 </resources>
