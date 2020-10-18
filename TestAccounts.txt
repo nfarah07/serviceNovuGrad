@@ -8,7 +8,7 @@ Ottawa East:
 	First name: Ottawa East
 	Last name: Branch
 
-Customer: Not in use
+Customer:
 	Email: customer@email.com
 	Password: customer
 	First name: Customer
@@ -20,7 +20,7 @@ Employee: Not in use
 	First name: Employee
 	Last name: Test
 
-Employee2: Not in use
+Customer2: Not in use
 	Email: dave@email.com
 	Password: SafePassword
 	First name: Dave
