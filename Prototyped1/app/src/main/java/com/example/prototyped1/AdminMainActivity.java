@@ -21,10 +21,10 @@ public class AdminMainActivity extends AppCompatActivity {
         adminUser = (Admin) getIntent().getSerializableExtra("USER_INFO");
         String emailOfAdmin= adminUser.getEmail();
 
-        setContentView(R.layout.activity_admin_main);
+//        setContentView(R.layout.activity_admin_main);
         TextView message = (TextView) findViewById(R.id.messageDisplayID);
 
-        message.setText( " Welcome " + emailOfAdmin + "! You are logged in as a Admin");
+        message.setText( " Welcome " + emailOfAdmin + "! You are logged in as the Admin");
 
     }
     public void onClickSignOut(View view) {

@@ -59,14 +59,15 @@
 
         <TextView
             android:id="@+id/messageDisplayID"
-            android:layout_width="282dp"
-            android:layout_height="134dp"
-            android:layout_margin="60dp"
-            android:gravity="center"
-            android:background="#FFFFFF"
-            android:backgroundTint="@android:color/holo_orange_dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#C5C5C5"
             android:fontFamily="sans-serif"
-            android:textColor="@color/colorAccent"
+            android:gravity="center"
+            android:textColor="#000000"
             android:textSize="30sp" />
 
         <Button
@@ -74,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:onClick="onServicesList"
             android:text="@string/to_services_list" />
 
@@ -82,6 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
             android:onClick="onEmployeeList"
             android:text="@string/to_branch_list" />
 

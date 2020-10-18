@@ -9,7 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#252922"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView6"
@@ -68,6 +72,7 @@
             android:id="@+id/redirectAdminWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="#2571AE"
             android:backgroundTint="#268A80"
             android:clickable="true"
@@ -75,6 +80,7 @@
             android:longClickable="false"
             android:onClick="onToWelcome"
             android:text="@string/back_to_welcome_screen"
+            android:textAlignment="center"
             android:textColor="@android:color/black" />
 
     </LinearLayout>

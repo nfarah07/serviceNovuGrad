@@ -49,6 +49,7 @@
             android:background="#2571AE"
             android:backgroundTint="#268A80"
             android:clickable="true"
+            android:focusable="true"
             android:linksClickable="false"
             android:longClickable="false"
             android:onClick="onToWelcome"
