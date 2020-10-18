@@ -50,20 +50,6 @@
             android:text="@string/delete_intructions"
             android:textColor="#DFD3D3" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnDeleteCustomer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/delete" />
-
-        </LinearLayout>
-
         <ListView
             android:id="@+id/list_of_customers"
             android:layout_width="match_parent"
