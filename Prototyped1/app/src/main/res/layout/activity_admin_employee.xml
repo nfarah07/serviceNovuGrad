@@ -31,6 +31,7 @@
             android:id="@+id/redirectAdminWelcome2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="#2571AE"
             android:backgroundTint="#268A80"
             android:clickable="true"
@@ -46,7 +47,9 @@
             android:id="@+id/delet_instructions2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/delete_intructions"
+            android:textAlignment="center"
             android:textColor="#DFD3D3" />
 
         <ListView

@@ -6,6 +6,7 @@ public class Service {
     private String id;
     private Double price;
 
+    public Service() {}
     public Service(String inName, String inID, Double inPrice) {
         name = inName;
         id = inID;

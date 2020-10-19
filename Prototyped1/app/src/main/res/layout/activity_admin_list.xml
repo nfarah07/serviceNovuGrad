@@ -15,14 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginEnd="65dp"
-            android:height="35sp"
             android:fontFamily="cursive"
             android:text="@string/services_list"
             android:textAlignment="center"
@@ -42,7 +42,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:orientation="horizontal">
 
             <Button

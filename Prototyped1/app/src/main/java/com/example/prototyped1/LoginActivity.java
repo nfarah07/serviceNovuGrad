@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             getData(); // if valid login, get user data
+
                         } else {
                             Toast.makeText(LoginActivity.this, "Login has failed!", Toast.LENGTH_LONG).show();
                             loading.setVisibility(View.GONE);
@@ -101,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
     private void getData(){
         final String userID = mAuth.getCurrentUser().getUid();
 
-        // Determine if the user is a user
+        // Determine if the user is a customer
         DatabaseReference customerRef = FirebaseDatabase.getInstance().getReference().child("Customer");
         customerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -119,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+
                     return;
                 }
             }
@@ -143,12 +145,15 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+
                     return;
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
+        Toast.makeText(LoginActivity.this, "If your log in was not successful, your account was deleted by the administrator", Toast.LENGTH_LONG).show();
+        loading.setVisibility(View.GONE);
     }
 
 
