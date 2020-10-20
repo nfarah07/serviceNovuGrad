@@ -29,4 +29,5 @@ public class AdminCustomerList extends ArrayAdapter<Customer> {
         customerEmail.setText(product.getEmail());
         return listViewItem;
     }
+
 }
