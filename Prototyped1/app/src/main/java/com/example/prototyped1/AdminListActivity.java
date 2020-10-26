@@ -42,7 +42,7 @@ public class AdminListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_list);
 
-    ref = FirebaseDatabase.getInstance().getReference();
+    ref = FirebaseDatabase.getInstance().getReference().child("Services");
 
         services = new ArrayList<>();
 
@@ -64,7 +64,7 @@ public class AdminListActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
-        ref.child("Services").addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 services.clear();
@@ -105,7 +105,8 @@ public class AdminListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String name = nameEdit.getText().toString().trim();
                 final double price = Double.parseDouble(priceEdit.getText().toString());
-                createService(name, "NEWID", price);
+                final String id = ref.push().getKey();
+                createService(name, id, price);
                 Toast.makeText(getApplicationContext(), "Service Created", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -135,8 +136,8 @@ public class AdminListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String name = nameAlter.getText().toString().trim();
                 final double price = Double.parseDouble(priceAlter.getText().toString());
-                ref.child("Services").child(idNo).child("name").setValue(name);
-                ref.child("Services").child(idNo).child("price").setValue(price);
+                ref.child(idNo).child("name").setValue(name);
+                ref.child(idNo).child("price").setValue(price);
                 Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -145,7 +146,7 @@ public class AdminListActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ref.child("Services").child(idNo).removeValue();
+                ref.child(idNo).removeValue();
                 Toast.makeText(getApplicationContext(), "Service Deleted", Toast.LENGTH_LONG).show();
                 b.dismiss();
             }
@@ -163,9 +164,9 @@ public class AdminListActivity extends AppCompatActivity {
 
     private boolean createService(String name, String id, double price) {
         //Service newService = new Service(name, id, price);
-        ref.child("Services").child(id).child("name").setValue(name);
-        ref.child("Services").child(id).child("id").setValue(id);
-        ref.child("Services").child(id).child("price").setValue(price);
+        ref.child(id).child("name").setValue(name);
+        ref.child(id).child("id").setValue(id);
+        ref.child(id).child("price").setValue(price);
         return true;
     }
 
