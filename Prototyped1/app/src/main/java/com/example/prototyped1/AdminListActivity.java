@@ -163,10 +163,8 @@ public class AdminListActivity extends AppCompatActivity {
     }
 
     private boolean createService(String name, String id, double price) {
-        //Service newService = new Service(name, id, price);
-        ref.child(id).child("name").setValue(name);
-        ref.child(id).child("id").setValue(id);
-        ref.child(id).child("price").setValue(price);
+        Service newService = new Service(name, id, price);
+        ref.child(id).setValue(newService);
         return true;
     }
 
