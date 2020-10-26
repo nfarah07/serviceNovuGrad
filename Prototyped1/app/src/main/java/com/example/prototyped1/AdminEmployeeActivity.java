@@ -103,7 +103,7 @@ public class AdminEmployeeActivity extends AppCompatActivity {
 
     private boolean deleteEmployee(String id) { //TODO remove from authentication
 
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Employee").child(id);
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Employees").child(id);
 
         db.removeValue();
         Toast.makeText(getApplicationContext(), "Branch Deleted", Toast.LENGTH_LONG).show();
