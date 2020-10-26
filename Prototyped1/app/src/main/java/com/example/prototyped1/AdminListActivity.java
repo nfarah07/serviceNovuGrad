@@ -1,6 +1,7 @@
 package com.example.prototyped1;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminListActivity extends AppCompatActivity {
 
@@ -104,11 +107,28 @@ public class AdminListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String name = nameEdit.getText().toString().trim();
+                final String tmpPrice = priceEdit.getText().toString().trim();
+                if(tmpPrice.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Price Required", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                int indexOfDec = tmpPrice.indexOf(".");
+                if(indexOfDec >= 0) {
+                    if(tmpPrice.substring(indexOfDec).length() >3) {
+                        Toast.makeText(getApplicationContext(), "Price Invalid", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 final double price = Double.parseDouble(priceEdit.getText().toString());
-                final String id = ref.push().getKey();
-                createService(name, id, price);
-                Toast.makeText(getApplicationContext(), "Service Created", Toast.LENGTH_LONG).show();
-                b.dismiss();
+                if(!TextUtils.isEmpty(name)) {
+                    final String id = ref.push().getKey();
+                    createService(name, id, price);
+                    Toast.makeText(getApplicationContext(), "Service Created", Toast.LENGTH_LONG).show();
+                    b.dismiss();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Name Required", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
@@ -135,11 +155,28 @@ public class AdminListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String name = nameAlter.getText().toString().trim();
+                final String tmpPrice = priceAlter.getText().toString();
+                if(tmpPrice.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Price Required", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                int indexOfDec = tmpPrice.indexOf(".");
+                if(indexOfDec >= 0) {
+                    if(tmpPrice.substring(indexOfDec).length() >3) {
+                        Toast.makeText(getApplicationContext(), "Price Invalid", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 final double price = Double.parseDouble(priceAlter.getText().toString());
-                ref.child(idNo).child("name").setValue(name);
-                ref.child(idNo).child("price").setValue(price);
-                Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
-                b.dismiss();
+                if(!TextUtils.isEmpty(name)) {
+                    ref.child(idNo).child("name").setValue(name);
+                    ref.child(idNo).child("price").setValue(price);
+                    Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
+                    b.dismiss();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Name Required", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
