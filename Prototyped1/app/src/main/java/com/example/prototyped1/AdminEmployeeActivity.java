@@ -13,15 +13,23 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AdminEmployeeActivity extends AppCompatActivity {
 
@@ -48,8 +56,31 @@ public class AdminEmployeeActivity extends AppCompatActivity {
                 Employee employee = employees.get(i);
                 FirebaseAuth mAuth;
                 mAuth = FirebaseAuth.getInstance();
-                String userID = mAuth.getCurrentUser().getUid();
-                showUpdateDeleteDialog(userID, employee.getEmail());
+                String userID = null;
+                try {
+                    userID = mAuth.getCurrentUser().getUid();
+                }catch(NullPointerException e){
+
+                    String eid =  employee.getID();
+                    String eEmail = employee.getEmail();
+                    //String password = unhashPassword(customer.getPassword());
+                    String password = employee.getPassword();
+                    mAuth.signInWithEmailAndPassword(eEmail, password);
+                    while (!Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail().equals(eEmail)){
+                        //Wait for sign up to complete
+                        try{
+                            //System.out.println("Testing");
+                            Thread.sleep(100);
+                        }catch (InterruptedException t){}
+                    }
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(eEmail)){
+                        userID = mAuth.getCurrentUser().getUid();
+                    }
+                }
+
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference("Employees").child(userID);
+                showUpdateDeleteDialog(employee.getID(),employee.getEmail(),i);
                 return true;
             }
         });
@@ -79,7 +110,7 @@ public class AdminEmployeeActivity extends AppCompatActivity {
         });
     }
 
-    private void showUpdateDeleteDialog(final String employeeID, String employeeEmail) {
+    private void showUpdateDeleteDialog(final String employeeID, String employeeEmail, final int i) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -95,19 +126,74 @@ public class AdminEmployeeActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteEmployee(employeeID);
+                deleteEmployee(employeeID,i);
                 b.dismiss();
             }
         });
     }
 
-    private boolean deleteEmployee(String id) { //TODO remove from authentication
+    private boolean deleteEmployee(final String id, int i) { //TODO remove from authentication
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Employees").child(id);
 
-        db.removeValue();
-        Toast.makeText(getApplicationContext(), "Branch Deleted", Toast.LENGTH_LONG).show();
+        Employee employee = employees.get(i);
+
+        String eid =  employee.getID();
+        String eEmail = employee.getEmail();
+        //String password = unhashPassword(employee.getPassword());
+        String password = employee.getPassword();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInWithEmailAndPassword(eEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Branch successfully Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Deletion has failed!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.getDisplayName();
+        while (!FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(eEmail)){
+            //Wait for sign up to complete
+            try{
+                //System.out.println("Testing");
+                Thread.sleep(100);
+            }catch (InterruptedException e){}
+        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(eEmail)){
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            user.delete();
+            db.removeValue();
+        }
+
+        //Toast.makeText(getApplicationContext(), "Branch Deleted", Toast.LENGTH_LONG).show();
         return true;
+    }
+
+    private String unhashPassword(String password) {
+        try {
+            // Returns a MessageDigest object that implements the specified digest algorithm.
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            //Updates the digest using the specified byte.
+            md.update(password.getBytes());
+            // RETURNS THE ARRAY OF BYTES
+
+            byte[] digestedBytes = md.digest();
+            // Create a container that stores the hexCodes
+
+            StringBuilder hexDigest = new StringBuilder();
+            for (byte digestedByte : digestedBytes) {
+                hexDigest.append(Integer.toString((digestedByte & 0xff) + 0x100, 16).substring(1));
+            }
+            return hexDigest.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public void onToWelcome(View view) {

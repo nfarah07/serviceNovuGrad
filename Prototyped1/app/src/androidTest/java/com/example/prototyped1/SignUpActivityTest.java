@@ -49,7 +49,7 @@ public class SignUpActivityTest{
         onView(withId(R.id.Password)).perform(typeText(password));
         onView(withId(R.id.btnScustomer)).perform(click());
         onView(withId(R.id.SignUp)).perform(click());
-        Thread.sleep(20000);
+        Thread.sleep(50000);
     }
 
     @After

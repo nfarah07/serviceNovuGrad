@@ -13,8 +13,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.auth.*;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AdminCustomerActivity extends AppCompatActivity {
 
@@ -50,8 +55,29 @@ public class AdminCustomerActivity extends AppCompatActivity {
                 Customer customer = customers.get(i);
                 FirebaseAuth mAuth;
                 mAuth = FirebaseAuth.getInstance();
-                String userID = mAuth.getCurrentUser().getUid();
-                showUpdateDeleteDialog(userID, customer.getEmail());
+                String userID = null;
+                try {
+                    userID = mAuth.getCurrentUser().getUid();
+                }catch(NullPointerException e){
+
+                    String cid =  customer.getID();
+                    String cEmail = customer.getEmail();
+                    //String password = unhashPassword(customer.getPassword());
+                    String password = customer.getPassword();
+                    mAuth.signInWithEmailAndPassword(cEmail, password);
+                    while (!Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail().equals(cEmail)){
+                        //Wait for sign up to complete
+                        try{
+                            //System.out.println("Testing");
+                            Thread.sleep(100);
+                        }catch (InterruptedException t){}
+                    }
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(cEmail)){
+                        userID = mAuth.getCurrentUser().getUid();
+                    }
+                }
+                showUpdateDeleteDialog(userID, customer.getEmail(),i);
                 return true;
             }
         });
@@ -81,7 +107,7 @@ public class AdminCustomerActivity extends AppCompatActivity {
         });
     }
 
-    private void showUpdateDeleteDialog(final String customerID, String customerEmail) {
+    private void showUpdateDeleteDialog(final String customerID, String customerEmail, final int i) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -97,20 +123,56 @@ public class AdminCustomerActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteCustomer(customerID);
+                deleteCustomer(customerID,i);
                 b.dismiss();
             }
         });
     }
 
-    private boolean deleteCustomer(String id) { //TODO remove from authentication
+    private boolean deleteCustomer(String id, int i) { //TODO remove from authentication
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Customer").child(id);
 
+        Customer customer = customers.get(i);
 
-        db.removeValue();
-        Toast.makeText(getApplicationContext(), "Customer Deleted", Toast.LENGTH_LONG).show();
+        String cid =  customer.getID();
+        String cEmail = customer.getEmail();
+        //String password = unhashPassword(customer.getPassword());
+        String password = customer.getPassword();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInWithEmailAndPassword(cEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Branch successfully Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Deletion has failed!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.getDisplayName();
+        while (!FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(cEmail)){
+            //Wait for sign up to complete
+            try{
+                //System.out.println("Testing");
+                Thread.sleep(100);
+            }catch (InterruptedException e){}
+        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(cEmail)){
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            user.delete();
+            db.removeValue();
+        }
+
+        //Toast.makeText(getApplicationContext(), "Branch Deleted", Toast.LENGTH_LONG).show();
         return true;
+    }
+
+    private String unhashPassword(String password) {
+        return password;
     }
 
     public void onToWelcome(View view) {
