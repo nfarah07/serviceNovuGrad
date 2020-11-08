@@ -8,6 +8,8 @@ import org.junit.Test;
 //import static org.junit.jupiter.api.Assertions.*;
 
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
@@ -20,6 +22,7 @@ import androidx.core.*;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBackUnconditionally;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
@@ -47,6 +50,7 @@ public class SignUpActivityTest{
         onView(withId(R.id.LastName)).perform(typeText(lastName));
         onView(withId(R.id.Email)).perform(typeText(email));
         onView(withId(R.id.Password)).perform(typeText(password));
+        onView(withId(R.id.btnScustomer)).perform(pressBackUnconditionally());
         onView(withId(R.id.btnScustomer)).perform(click());
         onView(withId(R.id.SignUp)).perform(click());
         Thread.sleep(50000);
