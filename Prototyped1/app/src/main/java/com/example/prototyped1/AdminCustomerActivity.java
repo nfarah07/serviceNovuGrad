@@ -65,6 +65,10 @@ public class AdminCustomerActivity extends AppCompatActivity {
                     //String password = unhashPassword(customer.getPassword());
                     String password = customer.getPassword();
                     mAuth.signInWithEmailAndPassword(cEmail, password);
+                    try{
+                        //System.out.println("Testing");
+                        Thread.sleep(5000);
+                    }catch (InterruptedException t){}
                     while (!Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail().equals(cEmail)){
                         //Wait for sign up to complete
                         try{
