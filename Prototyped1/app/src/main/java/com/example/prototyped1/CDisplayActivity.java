@@ -27,7 +27,7 @@ public class CDisplayActivity extends AppCompatActivity {
 
         }
         if(user instanceof Employee){
-            message.setText( " Welcome " + userFirstName + "! You are logged in as a Branch");
+            message.setText( " Welcome " + userFirstName + "! You are logged in as a BranchEmployee");
 
         }
 
