@@ -22,19 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#0075F3" />
-
-        <TextView
-            android:id="@+id/service_form"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#0075F3" />
-
-        <TextView
-            android:id="@+id/service_documents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#0075F3" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

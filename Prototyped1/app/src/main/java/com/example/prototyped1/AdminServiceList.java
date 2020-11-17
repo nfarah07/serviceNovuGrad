@@ -25,13 +25,10 @@ public class AdminServiceList extends ArrayAdapter<Service> {
 
         TextView serviceName = (TextView) listViewItem.findViewById(R.id.service_name);
         TextView servicePrice = (TextView) listViewItem.findViewById(R.id.service_price);
-        TextView serviceDocuments = (TextView) listViewItem.findViewById(R.id.service_documents);
-        TextView serviceForm = (TextView) listViewItem.findViewById(R.id.service_form);
+
         Service product = services.get(position);
         serviceName.setText(product.getName());
         servicePrice.setText(product.priceToString());
-        serviceDocuments.setText("Documents: " + product.getDocuments());
-        serviceForm.setText("Form values: " + product.getForm());
         return listViewItem;
     }
 

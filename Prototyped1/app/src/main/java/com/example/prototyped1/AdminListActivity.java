@@ -97,8 +97,6 @@ public class AdminListActivity extends AppCompatActivity {
 
         final EditText nameEdit = (EditText) dialogView.findViewById(R.id.serviceNameEnter);
         final EditText priceEdit = (EditText) dialogView.findViewById(R.id.servicePriceEnter);
-        final EditText formEdit = (EditText) dialogView.findViewById(R.id.serviceFormEnter);
-        final EditText documentsEdit = (EditText) dialogView.findViewById(R.id.serviceDocumentsEnter);
         final Button buttonCreate = (Button) dialogView.findViewById(R.id.serviceCreateButton);
 
         dialogBuilder.setTitle("Create a service");
@@ -109,8 +107,6 @@ public class AdminListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String name = nameEdit.getText().toString().trim();
-                final String form = formEdit.getText().toString().trim();
-                final String documents = documentsEdit.getText().toString().trim();
                 final String tmpPrice = priceEdit.getText().toString().trim();
                 if(tmpPrice.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Price Required", Toast.LENGTH_LONG).show();
@@ -123,18 +119,10 @@ public class AdminListActivity extends AppCompatActivity {
                         return;
                     }
                 }
-                if(TextUtils.isEmpty(form)){
-                    Toast.makeText(getApplicationContext(), "Information On Form Required", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(documents)){
-                    Toast.makeText(getApplicationContext(), "Documents Required", Toast.LENGTH_LONG).show();
-                    return;
-                }
                 final double price = Double.parseDouble(priceEdit.getText().toString());
                 if(!TextUtils.isEmpty(name)) {
                     final String id = ref.push().getKey();
-                    createService(name, id, price, form, documents);
+                    createService(name, id, price);
                     Toast.makeText(getApplicationContext(), "Service Created", Toast.LENGTH_LONG).show();
                     b.dismiss();
                 }
@@ -154,8 +142,6 @@ public class AdminListActivity extends AppCompatActivity {
 
         final EditText nameAlter = (EditText) dialogView.findViewById(R.id.serviceNameChange);
         final EditText priceAlter = (EditText) dialogView.findViewById(R.id.servicePriceChange);
-        final EditText formAlter = (EditText) dialogView.findViewById(R.id.serviceFormsChange);
-        final EditText documentsAlter = (EditText) dialogView.findViewById(R.id.serviceDocumentsChange);
         final Button buttonUpdate = (Button) dialogView.findViewById(R.id.serviceUpdateButton);
         final Button buttonDelete = (Button) dialogView.findViewById(R.id.serviceDeleteButton);
 
@@ -169,19 +155,9 @@ public class AdminListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final String name = nameAlter.getText().toString().trim();
-                final String form = formAlter.getText().toString().trim();
-                final String documents = documentsAlter.getText().toString().trim();
                 final String tmpPrice = priceAlter.getText().toString();
                 if(tmpPrice.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Price Required", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(form)){
-                    Toast.makeText(getApplicationContext(), "Information On Form Required", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(documents)){
-                    Toast.makeText(getApplicationContext(), "Documents Required", Toast.LENGTH_LONG).show();
                     return;
                 }
                 int indexOfDec = tmpPrice.indexOf(".");
@@ -195,8 +171,6 @@ public class AdminListActivity extends AppCompatActivity {
                 if(!TextUtils.isEmpty(name)) {
                     ref.child(idNo).child("name").setValue(name);
                     ref.child(idNo).child("price").setValue(price);
-                    ref.child(idNo).child("documents").setValue(documents);
-                    ref.child(idNo).child("form").setValue(form);
                     Toast.makeText(getApplicationContext(), "Service Updated", Toast.LENGTH_LONG).show();
                     b.dismiss();
                 }
@@ -225,8 +199,8 @@ public class AdminListActivity extends AppCompatActivity {
         finish();
     }
 
-    private boolean createService(String name, String id, double price, String form, String documents) {
-        Service newService = new Service(name, id, price, form, documents);
+    private boolean createService(String name, String id, double price) {
+        Service newService = new Service(name, id, price);
         ref.child(id).setValue(newService);
         return true;
     }
