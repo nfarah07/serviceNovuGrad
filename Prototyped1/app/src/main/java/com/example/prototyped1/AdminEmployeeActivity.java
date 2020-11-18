@@ -57,7 +57,37 @@ public class AdminEmployeeActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
                 Employee employee = employees.get(i);
 
-                showUpdateDeleteDialog(employee.getID(),employee.getEmail(),true);
+                FirebaseAuth mAuth;
+                mAuth = FirebaseAuth.getInstance();
+                String userID = null;
+                try {
+                    userID = mAuth.getCurrentUser().getUid();
+                }catch(NullPointerException e){
+
+                    String eid =  employee.getID();
+                    String eEmail = employee.getEmail();
+                    //String password = unhashPassword(customer.getPassword());
+                    String password = employee.getPassword();
+                    mAuth.signInWithEmailAndPassword(eEmail, password);
+                    try{
+                        //System.out.println("Testing");
+                        Thread.sleep(5000);
+                    }catch (InterruptedException t){}
+                    while (!Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail().equals(eEmail)){
+                        //Wait for sign up to complete
+                        try{
+                            //System.out.println("Testing");
+                            Thread.sleep(100);
+                        }catch (InterruptedException t){}
+                    }
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if(FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(eEmail)){
+                        userID = mAuth.getCurrentUser().getUid();
+                    }
+                }
+
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference("Employees").child(userID);
+                showUpdateDeleteDialog(employee.getID(),employee.getEmail(),i);
                 return true;
             }
 
@@ -75,13 +105,7 @@ public class AdminEmployeeActivity extends AppCompatActivity {
                 employees.clear();
 
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                    String email = postSnapshot.child("email").getValue(String.class);
-                    String password = postSnapshot.child("password").getValue(String.class);
-                    String firstName = postSnapshot.child("nameFirst").getValue(String.class);
-                    String lastName = postSnapshot.child("nameLast").getValue(String.class);
-                    String id = postSnapshot.getKey();
-
-                    Employee employee = new Employee(firstName,lastName,email,password,id);
+                    Employee employee = postSnapshot.getValue(Employee.class);
                     employees.add(employee);
                     /**
                      Employee employee = postSnapshot.getValue(Employee.class);
@@ -101,7 +125,7 @@ public class AdminEmployeeActivity extends AppCompatActivity {
         // could be done for customer right here as well !!!!
     }
 
-    private void showUpdateDeleteDialog(final String employeeID, String employeeEmail, final boolean isEmployee) {
+    private void showUpdateDeleteDialog(final String employeeID, String employeeEmail, final int i) {
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -117,23 +141,77 @@ public class AdminEmployeeActivity extends AppCompatActivity {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteUser(employeeID,isEmployee);
+                deleteEmployee(employeeID,i);
                 b.dismiss();
             }
         });
     }
 
-    private void deleteUser(String id, boolean isEmployee){
-        DatabaseReference dR;
-        if( isEmployee){
-            dR = FirebaseDatabase.getInstance().getReference("Employees").child(id);
-        } else {
-            dR = FirebaseDatabase.getInstance().getReference("Customer").child(id);
+    private boolean deleteEmployee(final String id, int i) { //TODO remove from authentication
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("Employees").child(id);
+
+        Employee employee = employees.get(i);
+
+        String eid = employee.getID();
+        String eEmail = employee.getEmail();
+        //String password = unhashPassword(employee.getPassword());
+        String password = employee.getPassword();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInWithEmailAndPassword(eEmail, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Branch successfully Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Deletion has failed!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.getDisplayName();
+        while (!FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(eEmail)) {
+            //Wait for sign up to complete
+            try {
+                //System.out.println("Testing");
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
         }
-        dR.removeValue();
-        Toast.makeText(this, "User Deleted", Toast.LENGTH_LONG).show();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(eEmail)) {
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            user.delete();
+            db.removeValue();
+        }
+        return true;
     }
 
+    /* Does not work as our encryption is too strong
+    private String unhashPassword(String password) {
+        try {
+            // Returns a MessageDigest object that implements the specified digest algorithm.
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            //Updates the digest using the specified byte.
+            md.update(password.getBytes());
+            // RETURNS THE ARRAY OF BYTES
+
+            byte[] digestedBytes = md.digest();
+            // Create a container that stores the hexCodes
+
+            StringBuilder hexDigest = new StringBuilder();
+            for (byte digestedByte : digestedBytes) {
+                hexDigest.append(Integer.toString((digestedByte & 0xff) + 0x100, 16).substring(1));
+            }
+            return hexDigest.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+     */
 
     public void onToWelcome(View view) {
         Admin adminMain = new Admin("admin", "admin");
