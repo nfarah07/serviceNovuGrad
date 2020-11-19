@@ -20,6 +20,7 @@ import androidx.core.*;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBackUnconditionally;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
@@ -48,6 +49,7 @@ public class SignUpActivityTest2 {
         onView(withId(R.id.LastName)).perform(typeText(lastName));
         onView(withId(R.id.Email)).perform(typeText(email));
         onView(withId(R.id.Password)).perform(typeText(password));
+        onView(withId(R.id.btnScustomer)).perform(pressBackUnconditionally());
         onView(withId(R.id.btnSEmployee)).perform(click());
         onView(withId(R.id.SignUp)).perform(click());
         Thread.sleep(50000);

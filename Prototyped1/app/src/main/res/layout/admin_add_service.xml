@@ -24,6 +24,22 @@
             android:hint="Price of service"
             android:inputType="numberDecimal" />
 
+        <EditText
+            android:id="@+id/serviceFormEnter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Information needed on Form"
+            android:inputType="textLongMessage" />
+
+        <EditText
+            android:id="@+id/serviceDocumentsEnter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Documents Required"
+            android:inputType="textLongMessage" />
+
         <Button
             android:id="@+id/serviceCreateButton"
             android:layout_width="match_parent"

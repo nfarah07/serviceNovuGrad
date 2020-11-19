@@ -24,6 +24,22 @@
             android:hint="New price of service"
             android:inputType="numberDecimal" />
 
+        <EditText
+            android:id="@+id/serviceFormsChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="New Forms Required"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/serviceDocumentsChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="New Documents Required"
+            android:inputType="textPersonName" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
