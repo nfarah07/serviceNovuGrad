@@ -47,52 +47,15 @@ public class CDisplayActivity extends AppCompatActivity {
             // if address and phone not yet set
             if(current.address == null && current.phone == (null)) {
                 //dialog to update phone and address
-                Map<String, Integer> hours = new HashMap<>();
-
-                hours.put("Monday,Start", 0);
-                hours.put("Monday,End", 0);
-                hours.put("Tuesday,Start", 0);
-                hours.put("Tuesday,End", 0);
-                hours.put("Wednesday,Start", 0);
-                hours.put("Wednesday,End", 0);
-                hours.put("Thursday,Start", 0);
-                hours.put("Thursday,End", 0);
-                hours.put("Friday,Start", 0);
-                hours.put("Friday,End", 0);
-                hours.put("Saturday,Start", 0);
-                hours.put("Saturday,End", 0);
-                hours.put("Sunday,Start", 0);
-                hours.put("Sunday,End", 0);
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference newHourReference = database.getReference("Employees/" + user.getID() + "/OpenHours");
-                newHourReference.setValue(hours);
                 showMandatoryInfoDialog(current);
+            }else{
+                goToBranchMain(current);
             }
-            //get updated (or same) Employee from Firebase
-            DatabaseReference refEmployees = FirebaseDatabase.getInstance().getReference("Employees");
-            refEmployees.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if(dataSnapshot.hasChild(current.getID())) {
-                        String email = dataSnapshot.child(current.getID()).child("email").getValue(String.class);
-                        String firstName = dataSnapshot.child(current.getID()).child("nameFirst").getValue(String.class);
-                        String lastName = dataSnapshot.child(current.getID()).child("nameLast").getValue(String.class);
-                        String pwd = dataSnapshot.child(current.getID()).child("password").getValue(String.class);
-                        String phone = dataSnapshot.child(current.getID()).child("phone").getValue(String.class);
-                        String address = dataSnapshot.child(current.getID()).child("address").getValue(String.class);
-                        Employee toBranchMain = new Employee(firstName, lastName, email, pwd, current.getID(), phone, address);
 
-                        //send updated employee to BranchMain
-                        Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);
-                        intent.putExtra("EMPLOYEE", toBranchMain);
-                        startActivity(intent);
-                        finish();
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) { }
-            });
+//            while(current.address == null || current.phone == null){}
+
+            //get updated (or same) Employee from Firebase
+
         }
     }
 
@@ -149,7 +112,29 @@ public class CDisplayActivity extends AppCompatActivity {
         Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
         ref.setValue(tmp); //replace Employee with updated version
 
+        Map<String, Integer> hours = new HashMap<>();
+        hours.put("Monday,Start", 0);
+        hours.put("Monday,End", 0);
+        hours.put("Tuesday,Start", 0);
+        hours.put("Tuesday,End", 0);
+        hours.put("Wednesday,Start", 0);
+        hours.put("Wednesday,End", 0);
+        hours.put("Thursday,Start", 0);
+        hours.put("Thursday,End", 0);
+        hours.put("Friday,Start", 0);
+        hours.put("Friday,End", 0);
+        hours.put("Saturday,Start", 0);
+        hours.put("Saturday,End", 0);
+        hours.put("Sunday,Start", 0);
+        hours.put("Sunday,End", 0);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference newHourReference = database.getReference("Employees/" + user.getID());
+        newHourReference.child("mapOfHours").setValue(hours);
+
+
+
         Toast.makeText(getApplicationContext(), "Successfully updated Branch information", Toast.LENGTH_LONG).show();
+        goToBranchMain(tmp);
 
     }
 
@@ -158,5 +143,32 @@ public class CDisplayActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void goToBranchMain(Employee transferEmployee){
+        final Employee holder = transferEmployee;
+        DatabaseReference refEmployees = FirebaseDatabase.getInstance().getReference("Employees");
+        refEmployees.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(holder.getID())) {
+                    String email = dataSnapshot.child(holder.getID()).child("email").getValue(String.class);
+                    String firstName = dataSnapshot.child(holder.getID()).child("nameFirst").getValue(String.class);
+                    String lastName = dataSnapshot.child(holder.getID()).child("nameLast").getValue(String.class);
+                    String pwd = dataSnapshot.child(holder.getID()).child("password").getValue(String.class);
+                    String phone = dataSnapshot.child(holder.getID()).child("phone").getValue(String.class);
+                    String address = dataSnapshot.child(holder.getID()).child("address").getValue(String.class);
+                    Employee toBranchMain = new Employee(firstName, lastName, email, pwd, holder.getID(), phone, address);
+
+                    //send updated employee to BranchMain
+                    Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);
+                    intent.putExtra("EMPLOYEE", toBranchMain);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
     }
 }
