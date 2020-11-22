@@ -47,8 +47,9 @@ public class CDisplayActivity extends AppCompatActivity {
             // user = employee ---> if branch phone, address == null, open dialog to set them
             final Employee current = (Employee)user;
             // if address and phone not yet set
-            if(current.address == null && current.phone == (null)) {
+            if(current.address == null && current.phone == null) {
                 //dialog to update phone and address
+                showMandatoryInfoDialog(current);
                 Map<String, Integer> hours = new HashMap<>();
 
                 hours.put("Monday,Start", 0);
@@ -67,9 +68,10 @@ public class CDisplayActivity extends AppCompatActivity {
                 hours.put("Sunday,End", 0);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference newHourReference = database.getReference("Employees/" + user.getID() + "/OpenHours");
+                DatabaseReference newHourReference = database.getReference("Employees/" + current.getID() + "/OpenHours");
                 newHourReference.setValue(hours);
-                showMandatoryInfoDialog(current);
+
+
             }
             //get updated (or same) Employee from Firebase
             DatabaseReference refEmployees = FirebaseDatabase.getInstance().getReference("Employees");
