@@ -42,7 +42,7 @@
 
             <Button
                 android:id="@+id/btn_addService"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="showAddNewDialog"
@@ -63,7 +63,8 @@
             android:onClick="onToWelcome"
             android:text="@string/back_to_welcome_screen"
             android:textAlignment="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:focusable="true" />
 
         <TextView
             android:id="@+id/edit_instructions"

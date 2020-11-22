@@ -35,5 +35,33 @@
     <string name="employee">Employee</string>
     <string name="customer">Customer</string>
 
+    <string name="services_offered">Services Offered</string>
+    <string name="service_requests">Service Requests</string>
+    <string name="hours_open">Hours Open</string>
+
+    <string name="return_to_branch_menu">Return to main menu</string>
+
+    <string name="current_hours_open">Current Hours Open</string>
+    <string name="change_hours_instructions">Hold on the hour change it</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+    <string name="opening_hour">Opening Hour:</string>
+    <string name="closing_hour">Closing Hour:</string>
+    <string name="colon">:</string>
+
     <string name="delete_intructions">To delete, press and hold on the email</string>
+    <string name="title_activity_branch_main">BranchMainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

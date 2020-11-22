@@ -10,8 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AdminServiceReqInfoChoiceActivity"></activity>
-        <activity android:name=".ServiceRequiredInfoActivity" />
-        <activity android:name=".AdminEmployeeList" />
+<!--        <activity android:name=".ServiceRequiredInfoActivity" />-->
+<!--        <activity android:name=".BranchChangeHour"></activity>-->
+        <activity
+            android:name=".BranchMainActivity"
+            android:label="@string/title_activity_branch_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+<!--        <activity android:name=".AdminEmployeeList" />-->
         <activity android:name=".AdminEmployeeActivity" />
         <activity android:name=".AdminCustomerActivity" />
         <activity android:name=".AdminListActivity" />

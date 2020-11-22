@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else {
+                    Toast.makeText(LoginActivity.this, "If your log in was not successful, your account was deleted by the administrator", Toast.LENGTH_LONG).show();
 
                     return;
                 }
@@ -154,7 +155,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
-        Toast.makeText(LoginActivity.this, "If your log in was not successful, your account was deleted by the administrator", Toast.LENGTH_LONG).show();
         loading.setVisibility(View.GONE);
     }
 

@@ -97,8 +97,8 @@ public class SignUpActivity extends AppCompatActivity {
         final String lastName = fieldLastName.getText().toString().trim();
         final String email = fieldEmail.getText().toString().trim();
         final String pwd = fieldPwd.getText().toString().trim();
-        final String hashedPwd = getHashedPassword(pwd);
-
+        //final String hashedPwd = getHashedPassword(pwd); TODO Make the deletion work with password encryption
+        final String hashedPwd = pwd;
 
         // Loading wheel
         loading.setVisibility(View.VISIBLE);
