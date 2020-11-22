@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.ClassFiles;
 
 public class Customer extends UserAccount {
 

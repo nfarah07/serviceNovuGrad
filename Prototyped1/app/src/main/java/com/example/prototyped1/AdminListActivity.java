@@ -15,24 +15,19 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.EditText;
 
-import com.example.prototyped1.Account;
-import com.example.prototyped1.Admin;
-import com.example.prototyped1.Customer;
-import com.example.prototyped1.Employee;
+import com.example.prototyped1.ClassFiles.Admin;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.prototyped1.ClassFiles.Service;
+import com.example.prototyped1.LayoutImplementations.AdminServiceList;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AdminListActivity extends AppCompatActivity {
 

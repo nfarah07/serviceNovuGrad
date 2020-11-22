@@ -13,8 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.prototyped1.Customer;
-import com.example.prototyped1.Employee;
+import com.example.prototyped1.ClassFiles.Customer;
+import com.example.prototyped1.ClassFiles.Employee;
+import com.example.prototyped1.LayoutImplementations.FieldUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -137,7 +138,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                                 // userType == 'E'
                                 else {
-                                    Employee newUser2 = new Employee(firstName, lastName, email, hashedPwd,uid);
+                                    Employee newUser2 = new Employee(firstName, lastName, email, hashedPwd,uid,null, null);
                                     // Send to firebase
 
                                     // Basics : When we write to the database we use the setValue() method and pass in the value that corresponds to the appropriate child key:

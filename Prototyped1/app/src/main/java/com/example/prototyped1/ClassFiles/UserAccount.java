@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.ClassFiles;
 
 
 public abstract class UserAccount extends Account {

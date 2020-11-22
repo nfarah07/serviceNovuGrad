@@ -6,9 +6,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.prototyped1.Account;
-import com.example.prototyped1.Admin;
-import com.example.prototyped1.UserAccount;
+import com.example.prototyped1.ClassFiles.Admin;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminMainActivity extends AppCompatActivity {

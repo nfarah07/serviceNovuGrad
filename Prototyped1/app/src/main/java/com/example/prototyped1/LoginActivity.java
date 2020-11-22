@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.prototyped1.Account;
-import com.example.prototyped1.Admin;
-import com.example.prototyped1.Customer;
-import com.example.prototyped1.Employee;
+import com.example.prototyped1.ClassFiles.Admin;
+import com.example.prototyped1.ClassFiles.Customer;
+import com.example.prototyped1.ClassFiles.Employee;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -138,7 +137,9 @@ public class LoginActivity extends AppCompatActivity {
                     String pwd = dataSnapshot.child(userID).child("password").getValue(String.class);
                     String firstName = dataSnapshot.child(userID).child("nameFirst").getValue(String.class);
                     String lastName = dataSnapshot.child(userID).child("nameLast").getValue(String.class);
-                    Employee userB = new Employee(firstName, lastName,email, pwd ,userID);
+                    String phone = dataSnapshot.child(userID).child("phone").getValue(String.class);
+                    String address = dataSnapshot.child(userID).child("address").getValue(String.class);
+                    Employee userB = new Employee(firstName, lastName,email, pwd ,userID, phone, address);
 
                     Intent intent = new Intent(getApplicationContext(), CDisplayActivity.class);
                     intent.putExtra("USER_INFO", userB);

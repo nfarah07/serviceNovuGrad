@@ -1,0 +1,67 @@
+class Account
+{
+  email;
+  passwords;
+}
+
+class UserAccount
+{
+  isA Account;
+  firstName;
+  lastName;
+  username;
+  role;
+}
+
+class Branch 
+{
+  isA UserAccount;
+  Service[] services;
+  Double startHour;
+  Double endHour;
+  public void addService(){}
+  public void removeService(){}
+  public void editWorkingHours(){}
+
+  1..* -- * AllRequests;
+}
+
+class Customer
+{
+    isA UserAccount;
+  
+  1 -- * ServiceRequests;
+}
+
+class Administrator
+{
+  isA Account;
+  public void createService(){}
+  public void deleteService(){}
+  public void alterService(){}
+  public void deleteCustomerAccount(){}
+  public void deleteBranchAccount(){}
+  
+  1 -- * Service;
+}
+
+class Service
+{
+  String name;
+  Double cost;
+  String[] documents;
+}
+
+class ServiceRequests{
+  branch;
+Service initialService;
+  
+
+Boolean approved;
+customerEmail;
+1 -- * Service;
+}
+
+class AllRequests{
+  * -- 1 ServiceRequests;
+}

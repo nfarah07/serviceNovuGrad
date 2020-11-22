@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.ClassFiles;
 
 import java.util.ArrayList;
 import java.util.Arrays;

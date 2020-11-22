@@ -1,21 +1,15 @@
 package com.example.prototyped1.LayoutImplementations;
 
-import java.util.List;
 import android.app.Activity;
-import android.content.Context;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.prototyped1.R;
-import com.example.prototyped1.Service;
+import com.example.prototyped1.ClassFiles.Service;
 
 public class ServiceCreationElement extends LinearLayout {
     private Activity activity;
