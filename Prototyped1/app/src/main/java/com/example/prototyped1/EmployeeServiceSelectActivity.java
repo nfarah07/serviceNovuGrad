@@ -115,7 +115,7 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
     }
 
     public void onExitWelcome(View view) {
-        Intent intent = new Intent(getApplicationContext(), CDisplayActivity.class);   //Application Context and Activity
+        Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);   //Application Context and Activity
         intent.putExtra("USER_INFO", currentUser);
         startActivity(intent);
         finish();
