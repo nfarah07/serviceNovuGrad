@@ -54,13 +54,13 @@ public class BranchMainActivity extends AppCompatActivity {
 
      */
 
-    /*
-    public void onHoursOpen(View view){
-        Intent intent = new Intent(getApplicationContext(), BranchChangeHour.class);
-        startActivity(intent);
-        finish();
-    }
-    */
+
+//    public void onHoursOpen(View view){
+//        Intent intent = new Intent(getApplicationContext(), BranchChangeHour.class);
+//        startActivity(intent);
+//        finish();
+//    }
+
     public void onUpdateInfo(View view) {
         //when you click the button on BranchMain
         updateInfoDialog(fromCD);
