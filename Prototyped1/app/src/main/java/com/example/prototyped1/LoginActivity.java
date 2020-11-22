@@ -138,7 +138,9 @@ public class LoginActivity extends AppCompatActivity {
                     String pwd = dataSnapshot.child(userID).child("password").getValue(String.class);
                     String firstName = dataSnapshot.child(userID).child("nameFirst").getValue(String.class);
                     String lastName = dataSnapshot.child(userID).child("nameLast").getValue(String.class);
-                    Employee userB = new Employee(firstName, lastName,email, pwd ,userID);
+                    String phone = dataSnapshot.child(userID).child("phone").getValue(String.class);
+                    String address = dataSnapshot.child(userID).child("address").getValue(String.class);
+                    Employee userB = new Employee(firstName, lastName,email, pwd ,userID, phone, address);
 
                     Intent intent = new Intent(getApplicationContext(), CDisplayActivity.class);
                     intent.putExtra("USER_INFO", userB);

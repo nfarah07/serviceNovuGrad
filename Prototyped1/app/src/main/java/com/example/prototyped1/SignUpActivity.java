@@ -137,7 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
                                 // userType == 'E'
                                 else {
-                                    Employee newUser2 = new Employee(firstName, lastName, email, hashedPwd,uid);
+                                    Employee newUser2 = new Employee(firstName, lastName, email, hashedPwd,uid,null, null);
                                     // Send to firebase
 
                                     // Basics : When we write to the database we use the setValue() method and pass in the value that corresponds to the appropriate child key:
