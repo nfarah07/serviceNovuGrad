@@ -28,6 +28,8 @@ import java.util.Map;
 
 public class CDisplayActivity extends AppCompatActivity {
     private UserAccount user;
+    private boolean dialogeBoxIsOpen = false;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_login);
@@ -56,10 +58,18 @@ public class CDisplayActivity extends AppCompatActivity {
 
             //get updated (or same) Employee from Firebase
 
+                //showMandatoryInfoDialog(current);
         }
+
+            //get updated (or same) Employee from Firebase
+
     }
 
+
     private void showMandatoryInfoDialog(final Employee employee){
+
+        dialogeBoxIsOpen = true;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.e_mandatory_info_dialog, null);
@@ -85,6 +95,7 @@ public class CDisplayActivity extends AppCompatActivity {
                         //validate address, has no special characters (that's what the prof said on Piazza)
                         if(address.matches("^[a-zA-Z0-9 ]+$")){
                             updateMandatoryInfo(employee, phone, address);
+                            dialogeBoxIsOpen = false;
                             d.dismiss();
                         }
                         //address not valid
@@ -109,10 +120,8 @@ public class CDisplayActivity extends AppCompatActivity {
     public void updateMandatoryInfo(Employee e, String phone, String address) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Employees").child(e.getID());
         //make new employee with same names, email, password, id, but new phone and address
-        Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
-        ref.setValue(tmp); //replace Employee with updated version
-
         Map<String, Integer> hours = new HashMap<>();
+
         hours.put("Monday,Start", 0);
         hours.put("Monday,End", 0);
         hours.put("Tuesday,Start", 0);
@@ -127,16 +136,20 @@ public class CDisplayActivity extends AppCompatActivity {
         hours.put("Saturday,End", 0);
         hours.put("Sunday,Start", 0);
         hours.put("Sunday,End", 0);
+
+        Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
+        //Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address, hours);
+        ref.setValue(tmp); //replace Employee with updated version
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference newHourReference = database.getReference("Employees/" + user.getID());
         newHourReference.child("mapOfHours").setValue(hours);
-
-
 
         Toast.makeText(getApplicationContext(), "Successfully updated Branch information", Toast.LENGTH_LONG).show();
         goToBranchMain(tmp);
 
     }
+
 
     public void onClickSignOut(View view) {
         FirebaseAuth.getInstance().signOut();
