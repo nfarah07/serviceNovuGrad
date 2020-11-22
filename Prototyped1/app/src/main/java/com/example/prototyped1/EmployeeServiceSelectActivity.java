@@ -37,6 +37,8 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
 
     private String uid;
 
+    boolean[] checked;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,7 +67,7 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Calls the method that handles this occurence
+                // Calls the method that handles this occurrence
                 onSave();
             }
         });
@@ -86,6 +88,10 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
 
                 EmployeeServiceList serviceAdapter = new EmployeeServiceList(EmployeeServiceSelectActivity.this,services);
                 selectList.setAdapter(serviceAdapter);
+
+                checked = new boolean[services.size()];
+
+
 
 /*                for(int j=0; j<services.size(); j++) {
 
@@ -112,10 +118,6 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
     }
 
     private void onSave() {
-        boolean[] checked = new boolean[selectList.getAdapter().getCount()];
-        for(int j=0; j<checked.length; j++) {
-
-        }
 
         ref.child("Employees").child(uid).child("Offered").child("dummy").setValue("dummy2"); // If there isn't already a category Offered, there is now. Useful for avoiding null pointer in next line
         ref.child("Employees").child(uid).child("Offered").removeValue(); // Remove all the Offered services before adding the new ones
@@ -126,5 +128,23 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
             }
         }
         Toast.makeText(EmployeeServiceSelectActivity.this, "Your changes have been saved.", Toast.LENGTH_LONG).show();
+    }
+
+    public boolean itemClicked(View view){
+        CheckBox serviceCheck = (CheckBox) view;
+        String serviceName = (String) serviceCheck.getText();
+        int newIndex = -1;
+        for(int j=0; j<services.size(); j++) {
+            if(services.get(j).getName().equals(serviceName)){
+                newIndex=j;
+            }
+        }
+        if(serviceCheck.isChecked()){
+            System.out.println("\n\n\n\nChecked\n\n\n\n");
+            checked[newIndex]=true;
+            return true;
+        }
+        checked[newIndex]=false;
+        return false;
     }
 }
