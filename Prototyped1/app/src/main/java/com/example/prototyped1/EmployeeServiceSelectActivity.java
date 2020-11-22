@@ -75,7 +75,7 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Calls the method that handles this occurence
+                // Calls the method that handles this occurrence
                 onSave();
             }
         });
@@ -96,6 +96,8 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
 
                 EmployeeServiceList serviceAdapter = new EmployeeServiceList(EmployeeServiceSelectActivity.this,services);
                 selectList.setAdapter(serviceAdapter);
+
+
 
 /*                for(int j=0; j<services.size(); j++) {
 
@@ -136,5 +138,14 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
             }
         }
         Toast.makeText(EmployeeServiceSelectActivity.this, "Your changes have been saved.", Toast.LENGTH_LONG).show();
+    }
+
+    public boolean itemClicked(View view){
+        CheckBox serviceCheck = (CheckBox) view;
+        if(serviceCheck.isChecked()){
+            System.out.println("\n\n\n\nChecked\n\n\n\n");
+            return true;
+        }
+        return false;
     }
 }

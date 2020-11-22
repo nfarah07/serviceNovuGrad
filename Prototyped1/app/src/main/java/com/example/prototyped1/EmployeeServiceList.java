@@ -32,5 +32,12 @@ public class EmployeeServiceList extends ArrayAdapter<Service>{
         return listViewItem;
     }
 
-
+    public boolean itemClicked(View view){
+        CheckBox serviceCheck = (CheckBox) view;
+        if(serviceCheck.isChecked()){
+            System.out.println("\n\n\n\nChecked\n\n\n\n");
+            return true;
+        }
+        return false;
+    }
 }
