@@ -27,7 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,7 +47,7 @@ public class AdminListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_list);
 
-    ref = FirebaseDatabase.getInstance().getReference().child("Services");
+        ref = FirebaseDatabase.getInstance().getReference().child("Services");
 
         services = new ArrayList<>();
 
@@ -58,6 +60,29 @@ public class AdminListActivity extends AppCompatActivity {
                 showAlterationDialog(service.getId());
                 return true;
             }
+        });
+
+        list3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long id) {
+                Service service = services.get(i);
+                ArrayList<String> serviceDetails = new ArrayList<String>(
+                        Arrays.asList(service.getName(), service.getId(), String.valueOf(service.getPrice()), service.getForm(), service.getDocuments())
+                );
+                Intent intent = new Intent(getApplicationContext(), AdminCreateServiceActivity.class);   //Application Context and Activity
+                intent.putExtra("ServiceDetails", serviceDetails);
+                intent.putExtra("ServiceID" , service.getId());
+
+                startActivity(intent);//, ProfileActivity.REQUEST_NEW_TEAM);
+//                finish();
+            }
+
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
+//                Service service = services.get(i);
+//                showAlterationDialog(service.getId());
+//                return true;
+//            }
         });
 
         //adminUser = (Admin) getIntent().getSerializableExtra("USER_INFO");
@@ -137,6 +162,16 @@ public class AdminListActivity extends AppCompatActivity {
                     createService(name, id, price, form, documents);
                     Toast.makeText(getApplicationContext(), "Service Created", Toast.LENGTH_LONG).show();
                     b.dismiss();
+
+                    ArrayList<String> serviceDetails = new ArrayList<String>(
+                            Arrays.asList(name, id, tmpPrice, form, documents)
+                    );
+                    Intent intent = new Intent(getApplicationContext(), AdminCreateServiceActivity.class);   //Application Context and Activity
+                    intent.putExtra("ServiceDetails", serviceDetails);
+                    intent.putExtra("ServiceID" , id);
+
+                    startActivity(intent);//, ProfileActivity.REQUEST_NEW_TEAM);
+//                    finish();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Name Required", Toast.LENGTH_LONG).show();

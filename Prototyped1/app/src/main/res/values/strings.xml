@@ -35,5 +35,9 @@
     <string name="employee">Employee</string>
     <string name="customer">Customer</string>
 
+    <string name="service_name_choice">Service Information</string>
+    <string name="create_service_title">Create Service</string>
+    <string name="create_service_submit">Submit Service</string>
+    <string name="create_service_add">Add Service Information</string>
     <string name="delete_intructions">To delete, press and hold on the email</string>
 </resources>

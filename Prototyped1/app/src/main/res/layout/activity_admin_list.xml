@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="To delete or edit, press and hold on the service"
+            android:text="To edit/delete, press and hold on the service. To add information, Just press on the service"
             android:textAlignment="center"
             android:textColor="#DFD3D3" />
 

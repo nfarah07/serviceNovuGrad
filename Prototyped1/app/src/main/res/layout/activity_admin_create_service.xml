@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2B3039"
+    android:orientation="vertical"
+    tools:context=".AdminCreateServiceActivity">
+
+    <Space
+        android:id="@+id/titleSpace"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/createServiceTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_service_title"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/addServiceInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addNewServiceInformation"
+        android:text="@string/create_service_add" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <LinearLayout
+            android:id="@+id/serviceInformationList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B2C1F4"
+        android:foregroundTint="#B2C1F4"
+        android:onClick="submitAndExit"
+        android:text="@string/create_service_submit"
+        android:textSize="24sp" />
+
+</LinearLayout>
