@@ -22,6 +22,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CDisplayActivity extends AppCompatActivity {
     private UserAccount user;
@@ -44,6 +49,26 @@ public class CDisplayActivity extends AppCompatActivity {
             // if address and phone not yet set
             if(current.address == null && current.phone == (null)) {
                 //dialog to update phone and address
+                Map<String, Integer> hours = new HashMap<>();
+
+                hours.put("Monday,Start", 0);
+                hours.put("Monday,End", 0);
+                hours.put("Tuesday,Start", 0);
+                hours.put("Tuesday,End", 0);
+                hours.put("Wednesday,Start", 0);
+                hours.put("Wednesday,End", 0);
+                hours.put("Thursday,Start", 0);
+                hours.put("Thursday,End", 0);
+                hours.put("Friday,Start", 0);
+                hours.put("Friday,End", 0);
+                hours.put("Saturday,Start", 0);
+                hours.put("Saturday,End", 0);
+                hours.put("Sunday,Start", 0);
+                hours.put("Sunday,End", 0);
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference newHourReference = database.getReference("Employees/" + user.getID() + "/OpenHours");
+                newHourReference.setValue(hours);
                 showMandatoryInfoDialog(current);
             }
             //get updated (or same) Employee from Firebase

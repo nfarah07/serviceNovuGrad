@@ -35,6 +35,8 @@ public class BranchMainActivity extends AppCompatActivity {
 
     public void onServicesOffered(View view){
 //        Employee tmp = new Employee("employee", "employee", "employee@email.com", "employee", "u84RkxHlJIXTuU0udUeaXxxboN72", "1234567890", "2 Nowhere Lane" ); // Hardcoded for testing with an employee
+        Employee tmp = new Employee("BigNe", "wTest", "newtes@hotmail.ca", "1234567", "FWcEDlygrMhDSAaSyjDghRS4gT33", "1234567890", "5 Losers Lane" ); // Hardcoded for testing with an employee
+
         Intent intent = new Intent(getApplicationContext(), EmployeeServiceSelectActivity.class);
         intent.putExtra("USER_INFO", fromCD);
         startActivity(intent);
