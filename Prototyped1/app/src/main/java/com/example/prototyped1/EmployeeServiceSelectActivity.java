@@ -126,11 +126,9 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
         for(int j=0; j<checked.length; j++) {
 
         }
-/*        if(ref.child("Employees").child(uid).child("Offered")!=null) {
-            for(int j=0; j<services.size(); j++) {
-                ref.child("Employees").child(uid).child("Offered").child(services.get(j).getName()).removeValue(); // First, clear all offered services by this branch
-            }
-        }*/
+
+        ref.child("Employees").child(uid).child("Offered").child("dummy").setValue("dummy2"); // If there isn't already a category Offered, there is now. Useful for avoiding null pointer in next line
+        ref.child("Employees").child(uid).child("Offered").removeValue(); // Remove all the Offered services before adding the new ones
 
         for(int j=0; j<checked.length; j++){
             if(checked[j]) {
