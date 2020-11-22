@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminEmployeeList"></activity>
+        <activity android:name=".BranchChangeHour"></activity>
+        <activity
+            android:name=".BranchMainActivity"
+            android:label="@string/title_activity_branch_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AdminEmployeeList" />
         <activity android:name=".AdminEmployeeActivity" />
         <activity android:name=".AdminCustomerActivity" />
         <activity android:name=".AdminListActivity" />

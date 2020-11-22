@@ -29,6 +29,11 @@ public class CDisplayActivity extends AppCompatActivity {
         if(user instanceof Employee){
             message.setText( " Welcome " + userFirstName + "! You are logged in as a BranchEmployee");
 
+            // TODO insert the code for the mandatory dialog box here
+
+            Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
 
