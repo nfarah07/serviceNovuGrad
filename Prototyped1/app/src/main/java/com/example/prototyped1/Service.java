@@ -5,6 +5,7 @@ public class Service {
     private String name;
     private String id;
     private double price;
+    // private Map < infoName , infoType >
 
     public Service() {}
     public Service(String inName, String inID, double inPrice) {
