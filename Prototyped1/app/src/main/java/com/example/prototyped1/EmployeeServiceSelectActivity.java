@@ -124,7 +124,6 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
     private void onSave() {
         boolean[] checked = new boolean[selectList.getAdapter().getCount()];
         for(int j=0; j<checked.length; j++) {
-            CheckBox tmp = (CheckBox) selectList.getAdapter().getItem(j);
 
         }
 /*        if(ref.child("Employees").child(uid).child("Offered")!=null) {
