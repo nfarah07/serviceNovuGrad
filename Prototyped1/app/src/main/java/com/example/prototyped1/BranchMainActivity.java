@@ -32,7 +32,7 @@ public class BranchMainActivity extends AppCompatActivity {
 
 
         // if address and phone not yet set
-        if(fromCD.address == null && fromCD.phone == (null)) {
+        if(fromCD.address == null && fromCD.phone == null) {
             showMandatoryInfoDialog(fromCD);
         }
 
@@ -118,7 +118,7 @@ public class BranchMainActivity extends AppCompatActivity {
 
     public void onServicesOffered(View view){
 //        Employee tmp = new Employee("employee", "employee", "employee@email.com", "employee", "u84RkxHlJIXTuU0udUeaXxxboN72", "1234567890", "2 Nowhere Lane" ); // Hardcoded for testing with an employee
-        Employee tmp = new Employee("BigNe", "wTest", "newtes@hotmail.ca", "1234567", "FWcEDlygrMhDSAaSyjDghRS4gT33", "1234567890", "5 Losers Lane" ); // Hardcoded for testing with an employee
+//        Employee tmp = new Employee("BigNe", "wTest", "newtes@hotmail.ca", "1234567", "FWcEDlygrMhDSAaSyjDghRS4gT33", "1234567890", "5 Losers Lane" ); // Hardcoded for testing with an employee
 
         Intent intent = new Intent(getApplicationContext(), EmployeeServiceSelectActivity.class);
         intent.putExtra("USER_INFO", fromCD);
@@ -126,15 +126,15 @@ public class BranchMainActivity extends AppCompatActivity {
     }
 
 
+    public void onServiceRequests(View view) {
 
-        /*
-    public void onServiceRequests(View view){
-        Intent intent = new Intent(getApplicationContext(), BranchServiceRequests.class);
+        Intent intent = new Intent(getApplicationContext(), BranchRequestHandlingActivity.class);
+        intent.putExtra("BRANCH", fromCD);
         startActivity(intent);
         finish();
     }
 
-     */
+
 
 
     public void onHoursOpen(View view){

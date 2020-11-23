@@ -47,9 +47,11 @@ public class CDisplayActivity extends AppCompatActivity {
             // user = employee ---> if branch phone, address == null, open dialog to set them
             final Employee current = (Employee)user;
             // if address and phone not yet set
-            if(current.address == null && current.phone == (null)) {
+            if(current.address == null && current.phone == null) {
                 //dialog to update phone and address
                 showMandatoryInfoDialog(current);
+                showMandatoryInfoDialog(current);
+
             }else{
                 goToBranchMain(current);
             }

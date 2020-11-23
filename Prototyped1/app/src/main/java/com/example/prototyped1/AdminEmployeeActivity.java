@@ -48,9 +48,6 @@ public class AdminEmployeeActivity extends AppCompatActivity {
         databaseEmployees = FirebaseDatabase.getInstance().getReference("Employees");
         employees =new ArrayList<>();
 
-
-
-
         employeelist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long id) {
