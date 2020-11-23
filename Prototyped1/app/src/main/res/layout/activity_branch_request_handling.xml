@@ -20,7 +20,7 @@
         android:text="Service Requests for this Branch"
         android:textAlignment="center"
         android:textColor="#00BCD4"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         android:text="Long click a service request to view it. Once you have viewed the request, you will be able to approve or deny it."
         android:textAlignment="center"
         android:textColor="#00BCD4"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <Space
         android:layout_width="match_parent"

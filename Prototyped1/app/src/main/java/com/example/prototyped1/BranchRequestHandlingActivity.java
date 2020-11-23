@@ -3,11 +3,15 @@ package com.example.prototyped1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.prototyped1.ClassFiles.Employee;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +26,26 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
     private ListView serviceRequestsList;
     DatabaseReference databaseRequests;
     List<ServiceRequest> serviceRequests;
+    private Employee currentBranch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branch_request_handling);
+        currentBranch = (Employee) getIntent().getSerializableExtra("BRANCH");
         serviceRequestsList = (ListView) findViewById(R.id.branchRequestsList);
+        TextView btnReturn = (TextView) findViewById(R.id.returnBranchMain);
         databaseRequests = FirebaseDatabase.getInstance().getReference("ServiceRequests");
         serviceRequests = new ArrayList<>();
+
+        btnReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);   //Application Context and Activity
+                startActivity(intent);
+                finish();
+            }
+        });
 
         serviceRequestsList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -42,9 +58,10 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
         });
     }
 
+    //populate listView again when changes were made
     protected void onStart() {
         super.onStart();
-        databaseRequests.addValueEventListener(new ValueEventListener() {
+        databaseRequests.orderByChild("associatedBranch").equalTo(currentBranch.getID()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 serviceRequests.clear();

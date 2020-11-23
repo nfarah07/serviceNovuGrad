@@ -10,7 +10,7 @@ public class ServiceRequest implements Serializable {
     //class variables
     private String id;  //ID of individual request
     private Map<String,Object> formResponses;  //to hold request info from client
-    private String associatedService; //ID of Service Request service
+    private String associatedService; //Name of Service Request service
     private String associatedBranch;  //ID of Branch sending request to
     private String associatedClient;  //ID of client making request
 

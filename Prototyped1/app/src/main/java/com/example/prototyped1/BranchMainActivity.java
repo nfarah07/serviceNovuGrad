@@ -32,7 +32,7 @@ public class BranchMainActivity extends AppCompatActivity {
 
 
         // if address and phone not yet set
-        if(fromCD.address == null && fromCD.phone == (null)) {
+        if(fromCD.address == null && fromCD.phone == null) {
             showMandatoryInfoDialog(fromCD);
         }
 
@@ -89,22 +89,22 @@ public class BranchMainActivity extends AppCompatActivity {
     public void updateMandatoryInfo(Employee e, String phone, String address) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Employees").child(e.getID());
         //make new employee with same names, email, password, id, but new phone and address
-        Map<String, Integer> openHours = new HashMap<>();
+        Map<String, String> openHours = new HashMap<>();
 
-        openHours.put("Monday,Start", 0);
-        openHours.put("Monday,End", 0);
-        openHours.put("Tuesday,Start", 0);
-        openHours.put("Tuesday,End", 0);
-        openHours.put("Wednesday,Start", 0);
-        openHours.put("Wednesday,End", 0);
-        openHours.put("Thursday,Start", 0);
-        openHours.put("Thursday,End", 0);
-        openHours.put("Friday,Start", 0);
-        openHours.put("Friday,End", 0);
-        openHours.put("Saturday,Start", 0);
-        openHours.put("Saturday,End", 0);
-        openHours.put("Sunday,Start", 0);
-        openHours.put("Sunday,End", 0);
+        openHours.put("Monday,Start", "0000");
+        openHours.put("Monday,End", "0000");
+        openHours.put("Tuesday,Start", "0000");
+        openHours.put("Tuesday,End", "0000");
+        openHours.put("Wednesday,Start", "0000");
+        openHours.put("Wednesday,End", "0000");
+        openHours.put("Thursday,Start", "0000");
+        openHours.put("Thursday,End", "0000");
+        openHours.put("Friday,Start", "0000");
+        openHours.put("Friday,End", "0000");
+        openHours.put("Saturday,Start", "0000");
+        openHours.put("Saturday,End", "0000");
+        openHours.put("Sunday,Start", "0000");
+        openHours.put("Sunday,End", "0000");
 
         //Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
         Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address, openHours);
@@ -118,7 +118,7 @@ public class BranchMainActivity extends AppCompatActivity {
 
     public void onServicesOffered(View view){
 //        Employee tmp = new Employee("employee", "employee", "employee@email.com", "employee", "u84RkxHlJIXTuU0udUeaXxxboN72", "1234567890", "2 Nowhere Lane" ); // Hardcoded for testing with an employee
-        Employee tmp = new Employee("BigNe", "wTest", "newtes@hotmail.ca", "1234567", "FWcEDlygrMhDSAaSyjDghRS4gT33", "1234567890", "5 Losers Lane" ); // Hardcoded for testing with an employee
+//        Employee tmp = new Employee("BigNe", "wTest", "newtes@hotmail.ca", "1234567", "FWcEDlygrMhDSAaSyjDghRS4gT33", "1234567890", "5 Losers Lane" ); // Hardcoded for testing with an employee
 
         Intent intent = new Intent(getApplicationContext(), EmployeeServiceSelectActivity.class);
         intent.putExtra("USER_INFO", fromCD);
@@ -127,15 +127,15 @@ public class BranchMainActivity extends AppCompatActivity {
     }
 
 
+    public void onServiceRequests(View view) {
 
-        /*
-    public void onServiceRequests(View view){
-        Intent intent = new Intent(getApplicationContext(), BranchServiceRequests.class);
+        Intent intent = new Intent(getApplicationContext(), BranchRequestHandlingActivity.class);
+        intent.putExtra("BRANCH", fromCD);
         startActivity(intent);
         finish();
     }
 
-     */
+
 
 
 //    public void onHoursOpen(View view){

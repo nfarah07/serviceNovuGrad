@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:onClick="onServiceRequests"
             android:text="@string/service_requests" />
 
         <Space
