@@ -7,7 +7,7 @@ public class Employee extends UserAccount {
 
     public String phone;
     public String address;
-    public Map<String,Integer> openHours;
+    public Map<String,String> openHours;
 
     public Employee(){
         super();
@@ -19,14 +19,14 @@ public class Employee extends UserAccount {
         this.address = address;
     }
 
-    public Employee(String nameFirst, String nameLast, String email, String password, String id, String phone, String address, Map<String, Integer> hours) {
+    public Employee(String nameFirst, String nameLast, String email, String password, String id, String phone, String address, Map<String, String> hours) {
         super(nameFirst, nameLast, email, password,id);
         this.phone = phone;
         this.address = address;
         this.openHours = hours;
     }
 
-    public Map<String, Integer> getOpenHours() {
+    public Map<String, String> getOpenHours() {
         return openHours;
     }
 }

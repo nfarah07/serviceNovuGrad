@@ -120,22 +120,22 @@ public class CDisplayActivity extends AppCompatActivity {
     public void updateMandatoryInfo(Employee e, String phone, String address) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Employees").child(e.getID());
         //make new employee with same names, email, password, id, but new phone and address
-        Map<String, Integer> hours = new HashMap<>();
+        Map<String, String> hours = new HashMap<>();
 
-        hours.put("Monday,Start", 0);
-        hours.put("Monday,End", 0);
-        hours.put("Tuesday,Start", 0);
-        hours.put("Tuesday,End", 0);
-        hours.put("Wednesday,Start", 0);
-        hours.put("Wednesday,End", 0);
-        hours.put("Thursday,Start", 0);
-        hours.put("Thursday,End", 0);
-        hours.put("Friday,Start", 0);
-        hours.put("Friday,End", 0);
-        hours.put("Saturday,Start", 0);
-        hours.put("Saturday,End", 0);
-        hours.put("Sunday,Start", 0);
-        hours.put("Sunday,End", 0);
+        hours.put("Monday,Start", "0000");
+        hours.put("Monday,End", "0000");
+        hours.put("Tuesday,Start", "0000");
+        hours.put("Tuesday,End", "0000");
+        hours.put("Wednesday,Start", "0000");
+        hours.put("Wednesday,End", "0000");
+        hours.put("Thursday,Start", "0000");
+        hours.put("Thursday,End", "0000");
+        hours.put("Friday,Start", "0000");
+        hours.put("Friday,End", "0000");
+        hours.put("Saturday,Start", "0000");
+        hours.put("Saturday,End", "0000");
+        hours.put("Sunday,Start", "0000");
+        hours.put("Sunday,End", "0000");
 
         Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
         //Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address, hours);

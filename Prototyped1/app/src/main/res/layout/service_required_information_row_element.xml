@@ -14,7 +14,7 @@
         android:textColor="#FFFFFF" />
 
     <Spinner
-        android:id="@+id/informationTypeSpinner"
+        android:id="@+id/hourSelectionSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"

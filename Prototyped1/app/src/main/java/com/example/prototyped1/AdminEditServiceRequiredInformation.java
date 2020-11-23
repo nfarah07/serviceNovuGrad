@@ -5,17 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.prototyped1.LayoutImplementations.ServiceCreationElement;
+import com.example.prototyped1.LayoutImplementations.ServiceRequiredInformationRowElement;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,14 +24,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdminCreateServiceActivity extends AppCompatActivity {
+//This activity changes the information required to be presented by clients when applying to a service
+//this ability is only available to admins until future implementations
+public class AdminEditServiceRequiredInformation extends AppCompatActivity {
 
     DatabaseReference ref; //Used to connect to Firebase
 
     private LinearLayout serviceInformationList;
     private Button addServiceInformation;
     private Button submitButton;
-    private TextView createServiceTitle;
+    private TextView editServiceRequiredInformationTitle;
     private String serviceId;
     private ArrayList<String> serviceDetails;
     private Map<String,String> informationHolder = new HashMap<String,String>();
@@ -43,29 +42,31 @@ public class AdminCreateServiceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_create_service);
+        setContentView(R.layout.activity_admin_edit_service_required_information);
 
         //(name, id, tmpPrice, form, documents)
         this.serviceDetails = (ArrayList<String>) getIntent().getSerializableExtra("ServiceDetails");
         this.serviceId = (String) getIntent().getSerializableExtra("ServiceID");
 //
         //Set the title of the service edit page to be the name of the service
-        createServiceTitle = (TextView) findViewById(R.id.createServiceTitle);
-        createServiceTitle.setText(serviceDetails.get(0));
+        editServiceRequiredInformationTitle = (TextView) findViewById(R.id.createServiceTitle);
+        editServiceRequiredInformationTitle.setText(serviceDetails.get(0));
 
         ref = FirebaseDatabase.getInstance().getReference().child("Services"); //Get List of Services
 
         //Get list to view information regarding service
         serviceInformationList = (LinearLayout) findViewById(R.id.serviceInformationList);
 
+        //Get a reference to the service that is being edited
         ref = FirebaseDatabase.getInstance().getReference().child("Services").child(this.serviceId);
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //For some reason this had to be done, I tried using Map<String, Object> and troubleshooted but nothing works
+                //TODO Fix how to send maps to the database
                 GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
                 informationHolder = dataSnapshot.child("mapOfInformation").getValue(genericTypeIndicator);
-//                informationHolder = (Map<String, Object>) dataSnapshot.child("mapOfInformation").getValue(Map.class);
-                if(informationHolder != null) populateList();
+                if(informationHolder != null) populateList();//If the map isn't empty or non-existent, pull from the database
             }
 
             @Override
@@ -79,7 +80,7 @@ public class AdminCreateServiceActivity extends AppCompatActivity {
         for(int i= 0 ; i < serviceInformationList.getChildCount() ; i++){
             View view  = serviceInformationList.getChildAt(i);
             view.setTag(i);
-            ServiceCreationElement holder = (ServiceCreationElement) view;
+            ServiceRequiredInformationRowElement holder = (ServiceRequiredInformationRowElement) view;
             View buttonDeleteInformation = holder.getChildAt(2);
             buttonDeleteInformation.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -101,7 +102,7 @@ public class AdminCreateServiceActivity extends AppCompatActivity {
 
     private void populateList(){
         for(String name : this.informationHolder.keySet()){
-            ServiceCreationElement holder = new ServiceCreationElement(this);
+            ServiceRequiredInformationRowElement holder = new ServiceRequiredInformationRowElement(this);
 
             EditText inputHolder = (EditText) holder.getChildAt(0);
             Spinner typeHolder = (Spinner) holder.getChildAt(1);
@@ -145,7 +146,7 @@ public class AdminCreateServiceActivity extends AppCompatActivity {
     }
 
     public void addNewServiceInformation(View view){
-        ServiceCreationElement holder = new ServiceCreationElement(this);
+        ServiceRequiredInformationRowElement holder = new ServiceRequiredInformationRowElement(this);
         this.serviceInformationList.addView(holder);
     }
 

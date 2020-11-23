@@ -11,23 +11,23 @@ import android.widget.Spinner;
 import com.example.prototyped1.R;
 import com.example.prototyped1.ClassFiles.Service;
 
-public class ServiceCreationElement extends LinearLayout {
+public class ServiceRequiredInformationRowElement extends LinearLayout {
     private Activity activity;
 //    List<Service> services;
     EditText editTextInformationName;
     Spinner informationTypeSpinner;
 
-    public ServiceCreationElement(Activity activity) {
+    public ServiceRequiredInformationRowElement(Activity activity) {
         super(activity);
         this.activity = activity;
 //        this.services = services;
 
         setOrientation(LinearLayout.HORIZONTAL);
-        LayoutInflater.from(activity).inflate(R.layout.linear_layout_service_information_creation_element, this, true);
+        LayoutInflater.from(activity).inflate(R.layout.service_required_information_row_element, this, true);
         init();
     }
 
-    public ServiceCreationElement(Activity activity, AttributeSet attrs) {
+    public ServiceRequiredInformationRowElement(Activity activity, AttributeSet attrs) {
         super(activity, attrs);
         this.activity = activity;
 //        this.services = services;
@@ -35,7 +35,7 @@ public class ServiceCreationElement extends LinearLayout {
 
     private void init(){
         editTextInformationName = (EditText) findViewById(R.id.editTextInformationName);
-        informationTypeSpinner = (Spinner) findViewById(R.id.informationTypeSpinner);
+        informationTypeSpinner = (Spinner) findViewById(R.id.hourSelectionSpinner);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 activity, android.R.layout.simple_spinner_item, Service.SERVICE_INFO_DATA_TYPES);
