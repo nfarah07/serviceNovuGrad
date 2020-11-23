@@ -123,7 +123,6 @@ public class BranchMainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), EmployeeServiceSelectActivity.class);
         intent.putExtra("USER_INFO", fromCD);
         startActivity(intent);
-        finish();
     }
 
 
@@ -138,11 +137,11 @@ public class BranchMainActivity extends AppCompatActivity {
 
 
 
-//    public void onHoursOpen(View view){
-//        Intent intent = new Intent(getApplicationContext(), BranchChangeHour.class);
-//        startActivity(intent);
-//        finish();
-//    }
+    public void onHoursOpen(View view){
+        Intent intent = new Intent(getApplicationContext(), BranchChangeHoursActivity.class);
+        intent.putExtra("EMPLOYEE", fromCD);
+        startActivity(intent);
+    }
 
     public void onUpdateInfo(View view) {
         //when you click the button on BranchMain
