@@ -64,7 +64,7 @@ public class AdminListActivity extends AppCompatActivity {
                 ArrayList<String> serviceDetails = new ArrayList<String>(
                         Arrays.asList(service.getName(), service.getId(), String.valueOf(service.getPrice()), service.getForm(), service.getDocuments())
                 );
-                Intent intent = new Intent(getApplicationContext(), AdminCreateServiceActivity.class);   //Application Context and Activity
+                Intent intent = new Intent(getApplicationContext(), AdminEditServiceRequiredInformation.class);   //Application Context and Activity
                 intent.putExtra("ServiceDetails", serviceDetails);
                 intent.putExtra("ServiceID" , service.getId());
 
@@ -161,7 +161,7 @@ public class AdminListActivity extends AppCompatActivity {
                     ArrayList<String> serviceDetails = new ArrayList<String>(
                             Arrays.asList(name, id, tmpPrice, form, documents)
                     );
-                    Intent intent = new Intent(getApplicationContext(), AdminCreateServiceActivity.class);   //Application Context and Activity
+                    Intent intent = new Intent(getApplicationContext(), AdminEditServiceRequiredInformation.class);   //Application Context and Activity
                     intent.putExtra("ServiceDetails", serviceDetails);
                     intent.putExtra("ServiceID" , id);
 

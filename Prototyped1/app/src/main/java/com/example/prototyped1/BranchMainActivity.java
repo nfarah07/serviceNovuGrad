@@ -89,22 +89,22 @@ public class BranchMainActivity extends AppCompatActivity {
     public void updateMandatoryInfo(Employee e, String phone, String address) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Employees").child(e.getID());
         //make new employee with same names, email, password, id, but new phone and address
-        Map<String, Integer> openHours = new HashMap<>();
+        Map<String, String> openHours = new HashMap<>();
 
-        openHours.put("Monday,Start", 0);
-        openHours.put("Monday,End", 0);
-        openHours.put("Tuesday,Start", 0);
-        openHours.put("Tuesday,End", 0);
-        openHours.put("Wednesday,Start", 0);
-        openHours.put("Wednesday,End", 0);
-        openHours.put("Thursday,Start", 0);
-        openHours.put("Thursday,End", 0);
-        openHours.put("Friday,Start", 0);
-        openHours.put("Friday,End", 0);
-        openHours.put("Saturday,Start", 0);
-        openHours.put("Saturday,End", 0);
-        openHours.put("Sunday,Start", 0);
-        openHours.put("Sunday,End", 0);
+        openHours.put("Monday,Start", "0000");
+        openHours.put("Monday,End", "0000");
+        openHours.put("Tuesday,Start", "0000");
+        openHours.put("Tuesday,End", "0000");
+        openHours.put("Wednesday,Start", "0000");
+        openHours.put("Wednesday,End", "0000");
+        openHours.put("Thursday,Start", "0000");
+        openHours.put("Thursday,End", "0000");
+        openHours.put("Friday,Start", "0000");
+        openHours.put("Friday,End", "0000");
+        openHours.put("Saturday,Start", "0000");
+        openHours.put("Saturday,End", "0000");
+        openHours.put("Sunday,Start", "0000");
+        openHours.put("Sunday,End", "0000");
 
         //Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
         Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address, openHours);
@@ -123,7 +123,6 @@ public class BranchMainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), EmployeeServiceSelectActivity.class);
         intent.putExtra("USER_INFO", fromCD);
         startActivity(intent);
-        finish();
     }
 
 
@@ -138,11 +137,11 @@ public class BranchMainActivity extends AppCompatActivity {
      */
 
 
-//    public void onHoursOpen(View view){
-//        Intent intent = new Intent(getApplicationContext(), BranchChangeHour.class);
-//        startActivity(intent);
-//        finish();
-//    }
+    public void onHoursOpen(View view){
+        Intent intent = new Intent(getApplicationContext(), BranchChangeHoursActivity.class);
+        intent.putExtra("EMPLOYEE", fromCD);
+        startActivity(intent);
+    }
 
     public void onUpdateInfo(View view) {
         //when you click the button on BranchMain

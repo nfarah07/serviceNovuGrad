@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LayoutImplementations.layout_selected_services"></activity>
-        <activity android:name=".AdminCreateServiceActivity" />
-        <activity android:name=".AdminEmployeeList" />
+
+
+
+        <activity android:name=".BranchChangeHoursActivity"></activity>
+        <activity android:name=".AdminEditServiceRequiredInformation" />
+
+
         <activity android:name=".AdminServiceReqInfoChoiceActivity" /> <!-- <activity android:name=".ServiceRequiredInfoActivity" /> -->
         <!-- <activity android:name=".BranchChangeHour"></activity> -->
         <activity
