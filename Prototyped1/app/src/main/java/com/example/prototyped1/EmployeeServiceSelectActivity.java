@@ -15,13 +15,16 @@ import com.example.prototyped1.ClassFiles.Employee;
 
 import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.LayoutImplementations.EmployeeServiceList;
+import com.example.prototyped1.LayoutImplementations.layout_selected_services;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeServiceSelectActivity extends AppCompatActivity {
@@ -77,6 +80,29 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
+
+        final ArrayList<String> servicesOfferedIDs = new ArrayList<>();
+        final ArrayList<String> servicesOfferedNames = new ArrayList<>();
+
+        ref.child("Employees").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("Offered") != null) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.child("Offered").getChildren()) {
+                        for(DataSnapshot postpostSnapshot : postSnapshot.getChildren()){
+                            String service = postpostSnapshot.getValue(String.class);
+                            servicesOfferedIDs.add(service);
+                        }
+                        String serviceName = postSnapshot.getKey();
+                        servicesOfferedIDs.add(serviceName);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
         ref.child("Services").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -85,9 +111,11 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Service service = postSnapshot.getValue(Service.class);
                     services.add(service);
+
                 }
 
-                EmployeeServiceList serviceAdapter = new EmployeeServiceList(EmployeeServiceSelectActivity.this,services);
+                //layout_selected_services serviceAdapeter = new layout_selected_services(EmployeeServiceSelectActivity.this,servicesOfferedNames);
+                EmployeeServiceList serviceAdapter = new EmployeeServiceList(EmployeeServiceSelectActivity.this,services, servicesOfferedIDs);
                 selectList.setAdapter(serviceAdapter);
 
                 checked = new boolean[services.size()];
@@ -113,7 +141,7 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
 
     public void onExitWelcome(View view) {
         Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);   //Application Context and Activity
-        intent.putExtra("USER_INFO", currentUser);
+        intent.putExtra("EMPLOYEE", currentUser);
         startActivity(intent);
         finish();
     }
@@ -122,6 +150,7 @@ public class EmployeeServiceSelectActivity extends AppCompatActivity {
 
         ref.child("Employees").child(uid).child("Offered").child("dummy").setValue("dummy2"); // If there isn't already a category Offered, there is now. Useful for avoiding null pointer in next line
         ref.child("Employees").child(uid).child("Offered").removeValue(); // Remove all the Offered services before adding the new ones
+
 
         for(int j=0; j<checked.length; j++){
             if(checked[j]) {
