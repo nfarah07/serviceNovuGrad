@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.LayoutImplementations;
 
 import java.util.List;
 import android.app.Activity;
@@ -6,8 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 import android.widget.CheckBox;
+import android.widget.TextView;
+
+import com.example.prototyped1.ClassFiles.Service;
+import com.example.prototyped1.EmployeeServiceSelectActivity;
+import com.example.prototyped1.R;
 
 public class EmployeeServiceList extends ArrayAdapter<Service>{
 

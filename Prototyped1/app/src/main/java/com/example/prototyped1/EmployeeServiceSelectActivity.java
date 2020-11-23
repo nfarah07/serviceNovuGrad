@@ -1,27 +1,20 @@
 package com.example.prototyped1;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.EditText;
-import android.widget.CheckBox;
 
-import com.example.prototyped1.Account;
-import com.example.prototyped1.Admin;
-import com.example.prototyped1.Customer;
-import com.example.prototyped1.Employee;
+import com.example.prototyped1.ClassFiles.Employee;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.prototyped1.ClassFiles.Service;
+import com.example.prototyped1.LayoutImplementations.EmployeeServiceList;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,8 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EmployeeServiceSelectActivity extends AppCompatActivity {
 

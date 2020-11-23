@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.prototyped1.Account;
-import com.example.prototyped1.Admin;
-import com.example.prototyped1.Customer;
-import com.example.prototyped1.Employee;
+import com.example.prototyped1.ClassFiles.Admin;
+import com.example.prototyped1.ClassFiles.Customer;
+import com.example.prototyped1.ClassFiles.Employee;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.prototyped1.ClassFiles.Customer;
+
 public class AdminCustomerList extends ArrayAdapter<Customer> {
     private Activity context;
     List<Customer> customers;

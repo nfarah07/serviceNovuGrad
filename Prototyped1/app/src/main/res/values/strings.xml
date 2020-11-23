@@ -34,7 +34,10 @@
     <string name="please_select_a_role">Please Select a Role</string>
     <string name="employee">Employee</string>
     <string name="customer">Customer</string>
-
+    <string name="service_name_choice">Service Information</string>
+    <string name="create_service_title">Create Service</string>
+    <string name="create_service_submit">Submit Service</string>
+    <string name="create_service_add">Add Service Information</string>
     <string name="services_offered">Services Offered</string>
     <string name="service_requests">Service Requests</string>
     <string name="hours_open">Hours Open</string>

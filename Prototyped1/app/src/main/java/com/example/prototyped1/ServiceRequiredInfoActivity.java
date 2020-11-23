@@ -1,14 +1,13 @@
 package com.example.prototyped1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.example.prototyped1.LayoutImplementations.RequiredInfoElement;
 
 import java.util.List;
 

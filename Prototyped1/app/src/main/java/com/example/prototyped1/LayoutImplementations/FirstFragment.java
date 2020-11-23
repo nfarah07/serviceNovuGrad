@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.LayoutImplementations;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.prototyped1.R;
 
 public class FirstFragment extends Fragment {
 

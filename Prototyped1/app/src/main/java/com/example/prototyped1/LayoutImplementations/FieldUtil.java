@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.LayoutImplementations;
 
 import android.content.Context;
 import android.widget.Toast;
