@@ -14,7 +14,7 @@ Customer:
 	First name: Customer
 	Last name: Test
 
-Employee: Not in use
+Employee:
 	Email: employee@email.com
 	Password: employee
 	First name: Employee

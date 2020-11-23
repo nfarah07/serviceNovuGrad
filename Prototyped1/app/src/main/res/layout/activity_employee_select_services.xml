@@ -20,6 +20,17 @@
             android:textSize="25sp" />
 
         <TextView
+            android:id="@+id/textView16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current services offered" />
+
+        <ListView
+            android:id="@+id/current_services_offered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
             android:id="@+id/serviceSelectExplanation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
