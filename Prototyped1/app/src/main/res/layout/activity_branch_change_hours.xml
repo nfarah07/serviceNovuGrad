@@ -20,25 +20,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/subTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changeBranchHoursTitle" />
-
     <LinearLayout
         android:id="@+id/hourChangeListLinearLayout"
         android:layout_width="350dp"
         android:layout_height="500dp"
-        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subTitle"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/changeBranchHoursTitle"></LinearLayout>
 
     <Button
         android:id="@+id/submitHoursButton"
