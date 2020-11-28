@@ -14,7 +14,7 @@
 
         <activity android:name=".BranchChangeHoursActivity"></activity>
         <activity android:name=".AdminEditServiceRequiredInformation" />
-
+        <activity android:name=".BranchRequestHandlingActivity" />
 
         <activity android:name=".AdminServiceReqInfoChoiceActivity" /> <!-- <activity android:name=".ServiceRequiredInfoActivity" /> -->
         <!-- <activity android:name=".BranchChangeHour"></activity> -->

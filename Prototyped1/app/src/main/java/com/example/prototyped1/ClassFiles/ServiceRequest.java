@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.ClassFiles;
 
 import com.example.prototyped1.ClassFiles.Service;
 
@@ -22,6 +22,8 @@ public class ServiceRequest implements Serializable {
         this.associatedService = associatedService;
         this.formResponses = formResponses;
     }
+
+    public ServiceRequest() {}
 
     public String getId() {return id;}
     public String getAssociatedService() {return associatedService;}

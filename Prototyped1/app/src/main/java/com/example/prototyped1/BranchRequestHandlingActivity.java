@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.prototyped1.ClassFiles.Employee;
+import com.example.prototyped1.ClassFiles.ServiceRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +42,7 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);   //Application Context and Activity
+                intent.putExtra("EMPLOYEE", currentBranch);
                 startActivity(intent);
                 finish();
             }
