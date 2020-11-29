@@ -53,7 +53,12 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //get the service request you selected
                 ServiceRequest pickedRequest = serviceRequests.get(position);
-                //TODO: open new activity that holds the response values from service request
+
+                //open new activity that holds the response values from service request
+                Intent intent = new Intent(getApplicationContext(), BranchReviewAndDecideServiceRequest.class);
+                intent.putExtra("REQUEST", pickedRequest);
+                startActivity(intent);
+
                 return true;
             }
         });
@@ -68,7 +73,7 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
                 serviceRequests.clear();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     ServiceRequest request = postSnapshot.getValue(ServiceRequest.class);
-                    serviceRequests.add(request);
+                    if(request.getRequestStatus().equals("pending")) serviceRequests.add(request);
                 }
                 EmployeeRequestList requestsAdapter = new EmployeeRequestList(BranchRequestHandlingActivity.this, serviceRequests);
                 serviceRequestsList.setAdapter(requestsAdapter);

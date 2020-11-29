@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2B3039"
     android:orientation="vertical"
-    tools:context=".AdminEditServiceRequiredInformation">
+    tools:context=".BranchReviewAndDecideServiceRequest">
 
     <Space
         android:id="@+id/titleSpace"
@@ -17,18 +17,11 @@
         android:id="@+id/decideServiceRequestTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_service_title"
+        android:text="@string/branch_decide_request_title"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/addServiceInformation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="addNewServiceInformation"
-        android:text="@string/create_service_add" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,14 +34,34 @@
             android:orientation="vertical" />
     </ScrollView>
 
-    <Button
-        android:id="@+id/submitButton"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#B2C1F4"
-        android:foregroundTint="#B2C1F4"
-        android:onClick="submitAndExit"
-        android:text="@string/create_service_submit"
-        android:textSize="24sp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#F17373"
+            android:foregroundTint="#B2C1F4"
+            android:onClick="rejectRequest"
+            android:text="@string/create_service_submit"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="24sp"
+            tools:text="@string/reject" />
+
+        <Button
+            android:id="@+id/submitButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#83CD90"
+            android:foregroundTint="#B2C1F4"
+            android:onClick="approveRequest"
+            android:text="@string/approve"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </LinearLayout>

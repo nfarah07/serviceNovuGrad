@@ -49,13 +49,13 @@ public class AdminEditServiceRequiredInformation extends AppCompatActivity {
         this.serviceId = (String) getIntent().getSerializableExtra("ServiceID");
 //
         //Set the title of the service edit page to be the name of the service
-        editServiceRequiredInformationTitle = (TextView) findViewById(R.id.createServiceTitle);
+        editServiceRequiredInformationTitle = (TextView) findViewById(R.id.decideServiceRequestTitle);
         editServiceRequiredInformationTitle.setText(serviceDetails.get(0));
 
         ref = FirebaseDatabase.getInstance().getReference().child("Services"); //Get List of Services
 
         //Get list to view information regarding service
-        serviceInformationList = (LinearLayout) findViewById(R.id.serviceInformationList);
+        serviceInformationList = (LinearLayout) findViewById(R.id.serviceRequestInformationList);
 
         //Get a reference to the service that is being edited
         ref = FirebaseDatabase.getInstance().getReference().child("Services").child(this.serviceId);
