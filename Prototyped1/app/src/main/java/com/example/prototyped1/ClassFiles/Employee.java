@@ -29,4 +29,5 @@ public class Employee extends UserAccount {
     public Map<String, String> getOpenHours() {
         return openHours;
     }
+    public String getAddress() {return address;}
 }
