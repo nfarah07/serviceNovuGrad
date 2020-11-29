@@ -71,7 +71,7 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
                 serviceRequests.clear();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     ServiceRequest request = postSnapshot.getValue(ServiceRequest.class);
-                    serviceRequests.add(request);
+                    if(request.getRequestStatus().equals("pending")) serviceRequests.add(request);
                 }
                 EmployeeRequestList requestsAdapter = new EmployeeRequestList(BranchRequestHandlingActivity.this, serviceRequests);
                 serviceRequestsList.setAdapter(requestsAdapter);

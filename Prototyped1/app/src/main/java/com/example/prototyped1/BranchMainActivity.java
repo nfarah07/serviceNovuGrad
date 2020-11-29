@@ -128,14 +128,16 @@ public class BranchMainActivity extends AppCompatActivity {
 
 
     public void onServiceRequests(View view) {
-        //adding these to firebase
-        String id = FirebaseDatabase.getInstance().getReference("ServiceRequests").push().getKey();
-        Map<String, Object> holder = new HashMap<String, Object>();
-        holder.put("FirsName","Kanye");
-        holder.put("LastName","East");
-        ServiceRequest req1 = new ServiceRequest(id, "J2h0IBRuyZZpLRopNyHEM8J19Id2", "cL2Y5jgcVre5CKgfhjM2p9TsaqL2", "-MM7xnHr2I5kH-_PkuXQ", holder, "pending");
-        FirebaseDatabase.getInstance().getReference("ServiceRequests").child(id).setValue(req1);
-        FirebaseDatabase.getInstance().getReference("ServiceRequests").child(id).child("FormResponses").setValue(holder);
+        //TODO : The below commented code was used to create
+        // instances of Service Request for testing. The code works for displaying service request.
+//        String id = FirebaseDatabase.getInstance().getReference("ServiceRequests").push().getKey();
+//        Map<String, Object> holder = new HashMap<String, Object>();
+//        holder.put("FirsName","Kanye");
+//        holder.put("LastName","East");
+//        ServiceRequest req1 = new ServiceRequest(id, "J2h0IBRuyZZpLRopNyHEM8J19Id2", "FWcEDlygrMhDSAaSyjDghRS4gT33", "-MM7xnHr2I5kH-_PkuXQ", holder);
+//        FirebaseDatabase.getInstance().getReference("ServiceRequests").child(id).setValue(req1);
+//        FirebaseDatabase.getInstance().getReference("ServiceRequests").child(id).child("FormResponses").setValue(holder);
+
         Intent intent = new Intent(getApplicationContext(), BranchRequestHandlingActivity.class);
         intent.putExtra("BRANCH", fromCD);
         startActivity(intent);
