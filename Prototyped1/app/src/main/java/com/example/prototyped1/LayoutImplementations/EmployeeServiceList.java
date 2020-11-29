@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.example.prototyped1.ClassFiles.Service;
-import com.example.prototyped1.EmployeeServiceSelectActivity;
+import com.example.prototyped1.EmployeeActivities.EmployeeServiceSelectActivity;
 import com.example.prototyped1.R;
 
 public class EmployeeServiceList extends ArrayAdapter<Service>{

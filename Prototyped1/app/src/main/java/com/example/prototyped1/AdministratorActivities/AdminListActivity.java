@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.AdministratorActivities;
 
 import android.content.Intent;
 import android.text.TextUtils;
@@ -19,6 +19,7 @@ import com.example.prototyped1.ClassFiles.Admin;
 
 import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.LayoutImplementations.AdminServiceList;
+import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

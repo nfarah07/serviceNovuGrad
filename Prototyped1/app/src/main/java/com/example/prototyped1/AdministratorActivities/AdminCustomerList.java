@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.AdministratorActivities;
 
 import java.util.List;
 import android.app.Activity;
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.prototyped1.ClassFiles.Customer;
+import com.example.prototyped1.R;
 
 public class AdminCustomerList extends ArrayAdapter<Customer> {
     private Activity context;

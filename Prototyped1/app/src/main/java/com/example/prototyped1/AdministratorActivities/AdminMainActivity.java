@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.AdministratorActivities;
 
 import android.content.Intent;
 import android.view.View;
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.prototyped1.ClassFiles.Admin;
+import com.example.prototyped1.LoginActivity;
+import com.example.prototyped1.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminMainActivity extends AppCompatActivity {

@@ -1,5 +1,5 @@
 
-package com.example.prototyped1;
+package com.example.prototyped1.AdministratorActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.prototyped1.ClassFiles.Admin;
 import com.example.prototyped1.ClassFiles.Employee;
+import com.example.prototyped1.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

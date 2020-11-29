@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#3A3A3A"
     android:orientation="vertical"
-    tools:context=".BranchRequestHandlingActivity" >
+    tools:context=".EmployeeActivities.BranchRequestHandlingActivity" >
 
     <Space
         android:layout_width="match_parent"

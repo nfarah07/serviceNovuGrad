@@ -9,22 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BranchReviewAndDecideServiceRequest"></activity>
-        <activity android:name=".BranchChangeHoursActivity" />
-        <activity android:name=".AdminEditServiceRequiredInformation" />
-        <activity android:name=".BranchRequestHandlingActivity" />
-        <activity android:name=".AdminServiceReqInfoChoiceActivity" /> <!-- <activity android:name=".ServiceRequiredInfoActivity" /> -->
+        <activity android:name=".CustomerSearchBranchActivity"></activity>
+        <activity android:name=".EmployeeActivities.BranchReviewAndDecideServiceRequest" />
+        <activity android:name=".EmployeeActivities.BranchChangeHoursActivity" />
+        <activity android:name=".AdministratorActivities.AdminEditServiceRequiredInformation" />
+        <activity android:name=".EmployeeActivities.BranchRequestHandlingActivity" />
+        <activity android:name=".AdministratorActivities.AdminServiceReqInfoChoiceActivity" /> <!-- <activity android:name=".ServiceRequiredInfoActivity" /> -->
         <!-- <activity android:name=".BranchChangeHour"></activity> -->
         <activity
-            android:name=".BranchMainActivity"
+            android:name=".EmployeeActivities.BranchMainActivity"
             android:label="@string/title_activity_branch_main"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity android:name=".AdminEmployeeList" /> -->
-        <activity android:name=".AdminEmployeeActivity" />
-        <activity android:name=".AdminCustomerActivity" />
-        <activity android:name=".AdminListActivity" />
-        <activity android:name=".AdminMainActivity" />
+        <activity android:name=".AdministratorActivities.AdminEmployeeActivity" />
+        <activity android:name=".AdministratorActivities.AdminCustomerActivity" />
+        <activity android:name=".AdministratorActivities.AdminListActivity" />
+        <activity android:name=".AdministratorActivities.AdminMainActivity" />
         <activity android:name=".CDisplayActivity" />
-        <activity android:name=".EmployeeServiceSelectActivity" />
+        <activity android:name=".EmployeeActivities.EmployeeServiceSelectActivity" />
         <activity android:name=".SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

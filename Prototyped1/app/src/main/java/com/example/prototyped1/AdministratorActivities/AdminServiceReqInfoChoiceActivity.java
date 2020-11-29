@@ -1,8 +1,10 @@
-package com.example.prototyped1;
+package com.example.prototyped1.AdministratorActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.prototyped1.R;
 
 // In Services List, add service redirects to this activity
 // Edit Text : Service Name

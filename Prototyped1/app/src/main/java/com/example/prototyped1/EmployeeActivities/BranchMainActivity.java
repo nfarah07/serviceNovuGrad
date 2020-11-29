@@ -1,12 +1,10 @@
-package com.example.prototyped1;
+package com.example.prototyped1.EmployeeActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.prototyped1.ClassFiles.Employee;
-import com.example.prototyped1.ClassFiles.ServiceRequest;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.prototyped1.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

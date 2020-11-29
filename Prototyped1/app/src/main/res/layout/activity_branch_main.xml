@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#252922"
-    tools:context=".BranchMainActivity">
+    tools:context=".EmployeeActivities.BranchMainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

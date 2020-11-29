@@ -2,9 +2,7 @@ package com.example.prototyped1.LayoutImplementations;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
-import com.example.prototyped1.EmployeeServiceSelectActivity;
+import com.example.prototyped1.EmployeeActivities.EmployeeServiceSelectActivity;
 import com.example.prototyped1.R;
 
 import java.util.ArrayList;

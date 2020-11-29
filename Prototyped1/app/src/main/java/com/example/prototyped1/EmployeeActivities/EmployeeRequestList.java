@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.EmployeeActivities;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.prototyped1.ClassFiles.ServiceRequest;
+import com.example.prototyped1.R;
 
 import java.util.List;
 

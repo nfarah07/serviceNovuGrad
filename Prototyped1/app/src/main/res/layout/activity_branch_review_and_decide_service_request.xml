@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2B3039"
     android:orientation="vertical"
-    tools:context=".BranchReviewAndDecideServiceRequest">
+    tools:context=".EmployeeActivities.BranchReviewAndDecideServiceRequest">
 
     <Space
         android:id="@+id/titleSpace"

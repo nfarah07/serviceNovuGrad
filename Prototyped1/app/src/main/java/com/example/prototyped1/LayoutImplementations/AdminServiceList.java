@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.prototyped1.AdminListActivity;
+import com.example.prototyped1.AdministratorActivities.AdminListActivity;
 import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.R;
 

@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.EmployeeActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.prototyped1.ClassFiles.ServiceRequest;
 import com.example.prototyped1.LayoutImplementations.ServiceRequestInformationRowElement;
 import com.example.prototyped1.LayoutImplementations.ServiceRequiredInformationRowElement;
+import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

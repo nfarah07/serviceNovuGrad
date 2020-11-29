@@ -1,4 +1,4 @@
-package com.example.prototyped1;
+package com.example.prototyped1.EmployeeActivities;
 
 import android.content.Intent;
 import android.view.View;
@@ -15,16 +15,14 @@ import com.example.prototyped1.ClassFiles.Employee;
 
 import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.LayoutImplementations.EmployeeServiceList;
-import com.example.prototyped1.LayoutImplementations.layout_selected_services;
+import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class EmployeeServiceSelectActivity extends AppCompatActivity {

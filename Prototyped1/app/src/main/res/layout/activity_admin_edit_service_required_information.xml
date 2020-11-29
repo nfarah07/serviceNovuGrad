@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2B3039"
     android:orientation="vertical"
-    tools:context=".AdminEditServiceRequiredInformation">
+    tools:context=".AdministratorActivities.AdminEditServiceRequiredInformation">
 
     <Space
         android:id="@+id/titleSpace"
