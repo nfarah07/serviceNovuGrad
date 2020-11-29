@@ -40,6 +40,12 @@ public class CDisplayActivity extends AppCompatActivity {
         TextView message = (TextView) findViewById(R.id.messageDisplayID);
         if (user instanceof Customer){
             message.setText( " Welcome " + userFirstName + "! You are logged in as a Customer");
+            // cast user to Customer and send customer to CustomerMainActivity
+            final Customer customer = (Customer)user;
+            Intent intent = new Intent(getApplicationContext(), CustomerMainActivity.class);
+            intent.putExtra("CUSTOMER", customer);
+            startActivity(intent);
+            finish();
         }
         if(user instanceof Employee){
             message.setText( " Welcome " + userFirstName + "! You are logged in as a BranchEmployee");
@@ -50,21 +56,10 @@ public class CDisplayActivity extends AppCompatActivity {
             if(current.address == null && current.phone == null) {
                 //dialog to update phone and address
                 showMandatoryInfoDialog(current);
-                showMandatoryInfoDialog(current);
-
             }else{
                 goToBranchMain(current);
             }
-
-//            while(current.address == null || current.phone == null){}
-
-            //get updated (or same) Employee from Firebase
-
-                //showMandatoryInfoDialog(current);
         }
-
-            //get updated (or same) Employee from Firebase
-
     }
 
 
@@ -122,6 +117,7 @@ public class CDisplayActivity extends AppCompatActivity {
     public void updateMandatoryInfo(Employee e, String phone, String address) {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Employees").child(e.getID());
         //make new employee with same names, email, password, id, but new phone and address
+        //default branch hours are 0000
         Map<String, String> hours = new HashMap<>();
 
         hours.put("Monday,Start", "0000");
@@ -140,7 +136,6 @@ public class CDisplayActivity extends AppCompatActivity {
         hours.put("Sunday,End", "0000");
 
         Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address);
-        //Employee tmp =  new Employee(e.getNameFirst(), e.getNameLast(), e.getEmail(), e.getPassword(), e.getID(), phone, address, hours);
         ref.setValue(tmp); //replace Employee with updated version
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
