@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.prototyped1.ClassFiles.Employee;
+import com.example.prototyped1.ClassFiles.ServiceRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +42,7 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), BranchMainActivity.class);   //Application Context and Activity
+                intent.putExtra("EMPLOYEE", currentBranch);
                 startActivity(intent);
                 finish();
             }
@@ -52,6 +53,9 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //get the service request you selected
                 ServiceRequest pickedRequest = serviceRequests.get(position);
+                Intent intent = new Intent(getApplicationContext(), BranchReviewAndDecideServiceRequest.class);
+                intent.putExtra("REQUEST", pickedRequest);
+                startActivity(intent);
                 //open new activity that holds the response values from service request
                 return true;
             }
@@ -67,7 +71,7 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
                 serviceRequests.clear();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     ServiceRequest request = postSnapshot.getValue(ServiceRequest.class);
-                    serviceRequests.add(request);
+                    if(request.getRequestStatus().equals("pending")) serviceRequests.add(request);
                 }
                 EmployeeRequestList requestsAdapter = new EmployeeRequestList(BranchRequestHandlingActivity.this, serviceRequests);
                 serviceRequestsList.setAdapter(requestsAdapter);

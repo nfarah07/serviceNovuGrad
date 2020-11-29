@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2B3039"
+    android:orientation="vertical"
+    tools:context=".BranchReviewAndDecideServiceRequest">
+
+    <Space
+        android:id="@+id/titleSpace"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:id="@+id/decideServiceRequestTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/branch_decide_request_title"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <LinearLayout
+            android:id="@+id/serviceRequestInformationList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#F17373"
+            android:foregroundTint="#B2C1F4"
+            android:onClick="rejectRequest"
+            android:text="@string/create_service_submit"
+            android:textColorHighlight="#FFFFFF"
+            android:textSize="24sp"
+            tools:text="@string/reject" />
+
+        <Button
+            android:id="@+id/submitButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#83CD90"
+            android:foregroundTint="#B2C1F4"
+            android:onClick="approveRequest"
+            android:text="@string/approve"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+</LinearLayout>

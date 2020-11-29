@@ -14,7 +14,7 @@
         android:layout_height="40dp" />
 
     <TextView
-        android:id="@+id/createServiceTitle"
+        android:id="@+id/decideServiceRequestTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create_service_title"
@@ -35,7 +35,7 @@
         android:layout_height="400dp">
 
         <LinearLayout
-            android:id="@+id/serviceInformationList"
+            android:id="@+id/serviceRequestInformationList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" />
