@@ -1,8 +1,10 @@
-package com.example.prototyped1;
+package com.example.prototyped1.CustomerActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.prototyped1.R;
 
 public class CustomerSearchBranchActivity extends AppCompatActivity {
 

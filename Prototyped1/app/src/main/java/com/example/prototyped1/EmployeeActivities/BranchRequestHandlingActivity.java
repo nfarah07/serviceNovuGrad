@@ -54,10 +54,12 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //get the service request you selected
                 ServiceRequest pickedRequest = serviceRequests.get(position);
+
+                //open new activity that holds the response values from service request
                 Intent intent = new Intent(getApplicationContext(), BranchReviewAndDecideServiceRequest.class);
                 intent.putExtra("REQUEST", pickedRequest);
                 startActivity(intent);
-                //open new activity that holds the response values from service request
+
                 return true;
             }
         });

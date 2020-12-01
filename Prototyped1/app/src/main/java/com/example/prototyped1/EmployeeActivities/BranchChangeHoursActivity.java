@@ -144,7 +144,7 @@ import java.util.Map;
 
              String timeHolder = hourChanging.getSelectedItem().toString() + minuteChanging.getSelectedItem().toString();
 
-             this.timeRangeHolder.remove(dayOfWeekText.getText().toString());
+             if(timeRangeHolder.containsKey(dayOfWeekText.getText().toString())) this.timeRangeHolder.remove(dayOfWeekText.getText().toString());
              this.timeRangeHolder.put(dayOfWeekText.getText().toString(), timeHolder);
 
          }

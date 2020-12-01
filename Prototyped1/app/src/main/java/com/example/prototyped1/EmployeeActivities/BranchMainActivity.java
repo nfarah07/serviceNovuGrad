@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -28,7 +29,10 @@ public class BranchMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_branch_main);
         //gets employee from CDisplayActivity
         fromCD = (Employee) getIntent().getSerializableExtra("EMPLOYEE");
-
+        String userfirstname = fromCD.getNameFirst();
+        String userlastname = fromCD.getNameLast();
+        TextView message = (TextView) findViewById(R.id.messageDisplayBranchName);
+        message.setText(userfirstname+" "+userlastname);
 
         // if address and phone not yet set
         if(fromCD.address == null && fromCD.phone == null) {
