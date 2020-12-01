@@ -47,7 +47,7 @@
             android:background="#F17373"
             android:foregroundTint="#B2C1F4"
             android:onClick="rejectRequest"
-            android:text="@string/create_service_submit"
+            android:text="@string/reject"
             android:textColorHighlight="#FFFFFF"
             android:textSize="24sp"
             tools:text="@string/reject" />
