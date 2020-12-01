@@ -1,13 +1,17 @@
 package com.example.prototyped1.CustomerActivities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.prototyped1.ClassFiles.Customer;
@@ -54,7 +58,7 @@ public class CustomerRatingBranchesActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //get specific employee you long clicked
                 Employee pickedBranch = allEmployees.get(position);
-                //TODO : make dialog for ratings
+                ratingBranchDialog();
                 return true;
             }
         });
@@ -75,6 +79,25 @@ public class CustomerRatingBranchesActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+    }
+
+    public void ratingBranchDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        builder.setTitle("How do You Rate This Branch?");
+        View dialogLayout = inflater.inflate(R.layout.rate_branch_dialog, null);
+        builder.setView(dialogLayout);
+        final RatingBar ratingBar = dialogLayout.findViewById(R.id.branchRatingBar);
+        final Button submitButton = dialogLayout.findViewById(R.id.submitRatingBtn);
+        final AlertDialog build = builder.create();
+        build.show();
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                build.dismiss();
+            }
         });
     }
 }
