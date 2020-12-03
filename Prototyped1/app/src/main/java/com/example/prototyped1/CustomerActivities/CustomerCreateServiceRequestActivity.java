@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.prototyped1.ClassFiles.Employee;
 import com.example.prototyped1.LayoutImplementations.ServiceRequiredInformationRowElement;
 import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
@@ -27,31 +28,39 @@ import java.util.Map;
 
 //This activity changes the information required to be presented by clients when applying to a service
 //this ability is only available to admins until future implementations
-public class AdminEditServiceRequiredInformation extends AppCompatActivity {
+
+/**
+ * This class is meant to allow customers to create a service request and submit it to a branch
+ *
+ * This class is given the branch that is offering the service, as well as the corresponding service associated with it
+ *
+ */
+public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
 
     DatabaseReference ref; //Used to connect to Firebase
 
     private LinearLayout serviceInformationList;
-    private Button addServiceInformation;
     private Button submitButton;
-    private TextView editServiceRequiredInformationTitle;
+    private Spinner branchSelectionSpinner;
+    private TextView customerCreateServiceRequestTitle;
     private String serviceId;
     private ArrayList<String> serviceDetails;
+    private ArrayList<Employee> employeeList;
     private Map<String,String> informationHolder = new HashMap<String,String>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_edit_service_required_information);
+        setContentView(R.layout.activity_customer_create_service_request);
 
         //(name, id, tmpPrice, form, documents)
         this.serviceDetails = (ArrayList<String>) getIntent().getSerializableExtra("ServiceDetails");
         this.serviceId = (String) getIntent().getSerializableExtra("ServiceID");
 //
         //Set the title of the service edit page to be the name of the service
-        editServiceRequiredInformationTitle = (TextView) findViewById(R.id.customerServiceRequestTitle);
-        editServiceRequiredInformationTitle.setText(serviceDetails.get(0));
+        customerCreateServiceRequestTitle = (TextView) findViewById(R.id.customerServiceRequestTitle);
+        customerCreateServiceRequestTitle.setText(serviceDetails.get(0));
 
         ref = FirebaseDatabase.getInstance().getReference().child("Services"); //Get List of Services
 

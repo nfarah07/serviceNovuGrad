@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2B3039"
     android:orientation="vertical"
-    tools:context=".AdministratorActivities.AdminEditServiceRequiredInformation">
+    tools:context=".AdministratorActivities.CustomerCreateServiceRequestActivity">
 
     <Space
         android:id="@+id/titleSpace"
@@ -17,18 +17,17 @@
         android:id="@+id/customerServiceRequestTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_service_title"
+        android:text="@string/create_service_request_title"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/addServiceInformation"
+    <Spinner
+        android:id="@+id/branchNameSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="addNewServiceInformation"
-        android:text="@string/create_service_add" />
+        android:layout_height="20dp"
+        android:background="#FBF9F9" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -38,7 +37,9 @@
             android:id="@+id/serviceRequesCustomertInformationList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+        </LinearLayout>
     </ScrollView>
 
     <Button
@@ -48,7 +49,7 @@
         android:background="#B2C1F4"
         android:foregroundTint="#B2C1F4"
         android:onClick="submitAndExit"
-        android:text="@string/create_service_submit"
+        android:text="@string/submit_service_request"
         android:textSize="24sp" />
 
 </LinearLayout>

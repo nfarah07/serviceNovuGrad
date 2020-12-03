@@ -3,20 +3,15 @@ package com.example.prototyped1.EmployeeActivities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prototyped1.ClassFiles.ServiceRequest;
 import com.example.prototyped1.LayoutImplementations.ServiceRequestInformationRowElement;
-import com.example.prototyped1.LayoutImplementations.ServiceRequiredInformationRowElement;
 import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,12 +46,12 @@ public class BranchReviewAndDecideServiceRequest extends AppCompatActivity {
         this.serviceId = (String) getIntent().getSerializableExtra("ServiceID");
         
         //Set the title of the service edit page to be the name of the service
-        editServiceRequiredInformationTitle = (TextView) findViewById(R.id.decideServiceRequestTitle);
+        editServiceRequiredInformationTitle = (TextView) findViewById(R.id.customerServiceRequestTitle);
 
         ref = FirebaseDatabase.getInstance().getReference().child("ServiceRequests"); //Get List of Services
 
         //Get list to view information regarding service
-        serviceRequestInformationList = (LinearLayout) findViewById(R.id.serviceRequestInformationList);
+        serviceRequestInformationList = (LinearLayout) findViewById(R.id.serviceRequesCustomertInformationList);
 
         //Get a reference to the service that is being edited
         ref = FirebaseDatabase.getInstance().getReference().child("ServiceRequests").child(this.serviceRequest.getId());

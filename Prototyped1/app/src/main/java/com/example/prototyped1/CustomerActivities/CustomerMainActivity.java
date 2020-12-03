@@ -31,4 +31,10 @@ public class CustomerMainActivity extends AppCompatActivity {
         intent.putExtra("CUSTOMER", fromCD);
         startActivity(intent);
     }
+
+    public void onSearchBranch(View view) {
+        Intent intent = new Intent(getApplicationContext(), CustomerSearchBranchActivity.class);
+        intent.putExtra("CUSTOMER", fromCD);
+        startActivity(intent);
+    }
 }

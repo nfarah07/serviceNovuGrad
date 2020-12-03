@@ -29,6 +29,7 @@ public class BranchRequestHandlingActivity extends AppCompatActivity {
     List<ServiceRequest> serviceRequests;
     private Employee currentBranch;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,21 +3,23 @@
     package="com.example.prototyped1">
 
     <application
+        android:name=".ServiceNovigradApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerActivities.CustomerSearchBranchActivity"></activity>
+        <activity android:name=".CustomerActivities.CustomerCreateServiceRequest"></activity>
+        <activity android:name=".CustomerActivities.CustomerSearchBranchActivity" />
         <activity android:name=".EmployeeActivities.BranchReviewAndDecideServiceRequest" />
         <activity android:name=".EmployeeActivities.BranchChangeHoursActivity" />
         <activity android:name=".AdministratorActivities.AdminEditServiceRequiredInformation" />
         <activity android:name=".EmployeeActivities.BranchRequestHandlingActivity" />
         <activity android:name=".AdministratorActivities.AdminServiceReqInfoChoiceActivity" /> <!-- <activity android:name=".ServiceRequiredInfoActivity" /> -->
-        <activity android:name=".CustomerActivities.CustomerRatingBranchesActivity"></activity>
+        <activity android:name=".CustomerActivities.CustomerRatingBranchesActivity" />
         <activity android:name=".CustomerActivities.CustomerMainActivity" />
-        <activity android:name=".BranchReviewAndDecideServiceRequest"></activity>
+        <activity android:name=".BranchReviewAndDecideServiceRequest" />
         <activity android:name=".BranchChangeHoursActivity" />
         <activity android:name=".AdminEditServiceRequiredInformation" />
         <activity android:name=".BranchRequestHandlingActivity" />
