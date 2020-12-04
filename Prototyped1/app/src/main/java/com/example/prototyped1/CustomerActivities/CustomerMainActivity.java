@@ -33,7 +33,7 @@ public class CustomerMainActivity extends AppCompatActivity {
     }
 
     public void onSearchBranch(View view) {
-        Intent intent = new Intent(getApplicationContext(), CustomerSearchBranchActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CustomerSelectSearchParametersActivity.class);
         intent.putExtra("CUSTOMER", fromCD);
         startActivity(intent);
     }

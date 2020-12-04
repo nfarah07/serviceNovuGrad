@@ -5,18 +5,18 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.prototyped1.ClassFiles.Employee;
-import com.example.prototyped1.ClassFiles.ServiceRequest;
 import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +25,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CustomerSearchByBranchAddress extends LinearLayout {
 
@@ -45,11 +44,11 @@ public class CustomerSearchByBranchAddress extends LinearLayout {
         this.activity = activity;
 //        this.services = services;
 
-        setOrientation(LinearLayout.HORIZONTAL);
+        setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(activity).inflate(R.layout.layout_customer_search_by_branch_address, this, true);
 
-        this.listOfBranches = (ListView) findViewById(R.id.listOfBranches);
-        this.searchBranchEditText = (EditText) findViewById(R.id.editTextBranchAddress);
+        this.listOfBranches = (ListView) findViewById(R.id.listOfAddressBranches);
+        this.searchBranchEditText = (EditText) findViewById(R.id.searchBranchEditText);
 
         adapter=new ArrayAdapter<>(activity,
                 android.R.layout.simple_list_item_1,
@@ -106,7 +105,6 @@ public class CustomerSearchByBranchAddress extends LinearLayout {
                         if(branch.address.toLowerCase().contains(searchHolder.toLowerCase()))  {
                             System.out.println("f");
                             employeeList.add(branch);
-
                         }
 //                        System.out.prin
                     }

@@ -81,4 +81,12 @@
     <string name="search_branch_by_address_titile">Search For a Branch</string>
     <string name="select_search_method_description">Click to search for a branch by address/service/branch name</string>
     <string name="search_by_branch_address_title">Enter the branch address below</string>
+
+    <string name="search_by_branch_service_title">Select the service offered below</string>
+    <string name="select_search_parameters_title">Select the search type below</string>
+
+
+    <string name="button_search_by_branch_address">Search Branches By Address</string>
+    <string name="button_search_by_service_offered">Search Branches By Service Offered</string>
+    <string name="button_search_by_branch_hours">Search Branches by Open Hours</string>
 </resources>
