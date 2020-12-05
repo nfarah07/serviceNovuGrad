@@ -4,18 +4,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentProviderClient;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.prototyped1.AdministratorActivities.CustomerCreateServiceRequestActivity;
 import com.example.prototyped1.ClassFiles.Employee;
+import com.example.prototyped1.LayoutImplementations.CustomerSearchBranchesList;
 import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,16 +29,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
 
     //instance variables
     private EditText branchAddressSearch;
     private ListView branchesContainingSearch;
-    public ArrayAdapter<String> adapter;
     private DatabaseReference dbBranches;
-    private final ArrayList<Employee> employeeList =  new ArrayList<Employee>();
-    private final ArrayList<String> employeeInfo = new ArrayList<String>();
+    private List<Employee> branchesReturned;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +45,8 @@ public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_search_by_branch_address);
         branchAddressSearch = (EditText) findViewById(R.id.editTextBranchAddress);
         branchesContainingSearch = (ListView) findViewById(R.id.listViewBranchesByAddress);
-
-        adapter=new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1,
-                employeeInfo) {
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                TextView text = (TextView) view.findViewById(android.R.id.text1);
-                text.setTextColor(Color.WHITE);
-                return super.getView(position, convertView, parent);
-            }
-        };
-        branchesContainingSearch.setAdapter(adapter);
-
         dbBranches = FirebaseDatabase.getInstance().getReference("Employees");
+        branchesReturned = new ArrayList<>();
 
         this.branchAddressSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -68,11 +58,20 @@ public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) { }
         });
+
+        branchesContainingSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Employee selectedBranch = branchesReturned.get(position);
+                Intent intent = new Intent(getApplicationContext(), CustomerCreateServiceRequestActivity.class);
+                intent.putExtra("EMPLOYEE_FOR_REQUEST", selectedBranch);
+                startActivity(intent);
+            }
+        });
     }
 
     public void searchByAddress(final String searchHolder){
-        employeeList.clear();
-        employeeInfo.clear();  //branch address list
+        branchesReturned.clear();
         dbBranches.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,14 +83,12 @@ public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
                         final String holder = searchHolder;
                         if(branch.address.toLowerCase().contains(searchHolder.toLowerCase()))  {
                             //System.out.println("f");
-                            employeeList.add(branch);
+                            branchesReturned.add(branch);
                         }
                     }
                 }
-                for(Employee tmp : employeeList){
-                    employeeInfo.add(tmp.getAddress());
-                    adapter.notifyDataSetChanged();
-                }
+                CustomerSearchBranchesList branchAdapter = new CustomerSearchBranchesList(CustomerSearchBranchByAddressActivity.this, branchesReturned);
+                branchesContainingSearch.setAdapter(branchAdapter);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) { }

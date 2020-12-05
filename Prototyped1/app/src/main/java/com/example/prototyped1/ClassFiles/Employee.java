@@ -35,4 +35,5 @@ public class Employee extends UserAccount {
         return mapOfHours;
     }
     public String getAddress() {return address;}
+    public String getPhone() {return phone; }
 }
