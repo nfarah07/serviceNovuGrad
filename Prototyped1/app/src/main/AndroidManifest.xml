@@ -14,7 +14,7 @@
         <activity android:name=".CustomerActivities.CustomerSearchBranchByServiceOfferedActivity" />
         <activity android:name=".CustomerActivities.CustomerSearchBranchByAddressActivity" />
         <activity android:name=".CustomerActivities.CustomerSelectSearchParametersActivity" />
-        <activity android:name=".CustomerActivities.CustomerCreateServiceRequest" />
+        <activity android:name=".CustomerActivities.CustomerCreateServiceRequestActivity" />
         <activity android:name=".CustomerActivities.CustomerSearchBranchActivity" />
         <activity android:name=".EmployeeActivities.BranchReviewAndDecideServiceRequest" />
         <activity android:name=".EmployeeActivities.BranchChangeHoursActivity" />

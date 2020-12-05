@@ -89,4 +89,6 @@
     <string name="button_search_by_branch_address">Search Branches By Address</string>
     <string name="button_search_by_service_offered">Search Branches By Service Offered</string>
     <string name="button_search_by_branch_hours">Search Branches by Open Hours</string>
+
+    <string name="select_branch_by_name_and_service_title">Select the branch, then the service offered by the branch</string>
 </resources>

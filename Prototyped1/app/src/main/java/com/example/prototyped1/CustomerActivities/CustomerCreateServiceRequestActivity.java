@@ -1,18 +1,22 @@
-package com.example.prototyped1.AdministratorActivities;
+package com.example.prototyped1.CustomerActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.prototyped1.ClassFiles.Employee;
+import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.LayoutImplementations.ServiceRequiredInformationRowElement;
 import com.example.prototyped1.R;
 import com.google.firebase.database.DataSnapshot;
@@ -37,72 +41,99 @@ import java.util.Map;
  */
 public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
 
-    DatabaseReference ref; //Used to connect to Firebase
+    DatabaseReference dbBranches; //Used to connect to Firebase
 
-    private LinearLayout serviceInformationList;
+    private Spinner branchNameSpinner; //Spinner to hold the branch name
+    private Spinner branchServiceSpinner; //Once the user selects a branch from the spinner, this one is populated
+
+    //List of the branches to be populated
+    private ArrayList<Employee> branchList = new ArrayList<Employee>();
+    //List of branch names to be stored in the spinner
+    private ArrayList<String> branchNames = new ArrayList<String>();
+    //List of the services offered to be populated once a branch is selected
+    private ArrayList<String> branchServicesOffered = new ArrayList<String>();
+
+
+
+    private ListView serviceRequiredInformationList;
     private Button submitButton;
-    private Spinner branchSelectionSpinner;
-    private TextView customerCreateServiceRequestTitle;
-    private String serviceId;
-    private ArrayList<String> serviceDetails;
-    private ArrayList<Employee> employeeList;
-    private Map<String,String> informationHolder = new HashMap<String,String>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_create_service_request);
 
-        //(name, id, tmpPrice, form, documents)
-        this.serviceDetails = (ArrayList<String>) getIntent().getSerializableExtra("ServiceDetails");
-        this.serviceId = (String) getIntent().getSerializableExtra("ServiceID");
-//
-        //Set the title of the service edit page to be the name of the service
-        customerCreateServiceRequestTitle = (TextView) findViewById(R.id.customerServiceRequestTitle);
-        customerCreateServiceRequestTitle.setText(serviceDetails.get(0));
+        branchServiceSpinner = (Spinner) findViewById(R.id.branchServiceSpinner);
+        branchNameSpinner = (Spinner) findViewById(R.id.branchNameSpinner);
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Services"); //Get List of Services
+        dbBranches = FirebaseDatabase.getInstance().getReference().child("Employees"); //Get List of Employees
 
-        //Get list to view information regarding service
-        serviceInformationList = (LinearLayout) findViewById(R.id.serviceRequesCustomertInformationList);
+        populateBranchSpinner();
 
-        //Get a reference to the service that is being edited
-        ref = FirebaseDatabase.getInstance().getReference().child("Services").child(this.serviceId);
-        ref.addValueEventListener(new ValueEventListener() {
+        branchNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //For some reason this had to be done, I tried using Map<String, Object> and troubleshooted but nothing works
-                //TODO Fix how to send maps to the database
-                GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
-                informationHolder = dataSnapshot.child("mapOfInformation").getValue(genericTypeIndicator);
-                if(informationHolder != null) populateList();//If the map isn't empty or non-existent, pull from the database
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Employee branchSelected = (Employee) branchList.get(i);
+                populateServiceOfferedSpinner(branchSelected);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                String errorMessage = "The read failed: " + databaseError.getCode();
-                Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
-        ref = FirebaseDatabase.getInstance().getReference().child("Services");
 
-        for(int i= 0 ; i < serviceInformationList.getChildCount() ; i++){
-            View view  = serviceInformationList.getChildAt(i);
-            view.setTag(i);
-            ServiceRequiredInformationRowElement holder = (ServiceRequiredInformationRowElement) view;
-            View buttonDeleteInformation = holder.getChildAt(2);
-            buttonDeleteInformation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "Click!", Toast.LENGTH_LONG).show();
-                    LinearLayout holder = (LinearLayout) view.getParent();
-                    EditText inputHolder = (EditText) holder.getChildAt(0);
-                    informationHolder.remove(inputHolder.getText().toString());
-                    serviceInformationList.removeView(view);
-                }
-            });
-        }
+        //(name, id, tmpPrice, form, documents)
+//        this.serviceDetails = (ArrayList<String>) getIntent().getSerializableExtra("ServiceDetails");
+//        this.serviceId = (String) getIntent().getSerializableExtra("ServiceID");
+//
+//
+////
+//        //Set the title of the service edit page to be the name of the service
+//        customerCreateServiceRequestTitle = (TextView) findViewById(R.id.customerServiceRequestTitle);
+//        customerCreateServiceRequestTitle.setText(serviceDetails.get(0));
+
+
+
+//        //Get list to view information regarding service
+//        serviceInformationList = (LinearLayout) findViewById(R.id.serviceRequesCustomertInformationList);
+//
+//        //Get a reference to the service that is being edited
+//        ref = FirebaseDatabase.getInstance().getReference().child("Services").child(this.serviceId);
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //For some reason this had to be done, I tried using Map<String, Object> and troubleshooted but nothing works
+//                //TODO Fix how to send maps to the database
+//                GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
+//                informationHolder = dataSnapshot.child("mapOfInformation").getValue(genericTypeIndicator);
+//                if(informationHolder != null) populateList();//If the map isn't empty or non-existent, pull from the database
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                String errorMessage = "The read failed: " + databaseError.getCode();
+//                Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+//            }
+//        });
+//        ref = FirebaseDatabase.getInstance().getReference().child("Services");
+//
+//        for(int i= 0 ; i < serviceInformationList.getChildCount() ; i++){
+//            View view  = serviceInformationList.getChildAt(i);
+//            view.setTag(i);
+//            ServiceRequiredInformationRowElement holder = (ServiceRequiredInformationRowElement) view;
+//            View buttonDeleteInformation = holder.getChildAt(2);
+//            buttonDeleteInformation.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Toast.makeText(getApplicationContext(), "Click!", Toast.LENGTH_LONG).show();
+//                    LinearLayout holder = (LinearLayout) view.getParent();
+//                    EditText inputHolder = (EditText) holder.getChildAt(0);
+//                    informationHolder.remove(inputHolder.getText().toString());
+//                    serviceInformationList.removeView(view);
+//                }
+//            });
+//        }
     }
 
     protected void onStart() {
@@ -110,77 +141,83 @@ public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
 
     }
 
-    private void populateList(){
-        for(String name : this.informationHolder.keySet()){
-            ServiceRequiredInformationRowElement holder = new ServiceRequiredInformationRowElement(this);
-
-            EditText inputHolder = (EditText) holder.getChildAt(0);
-            Spinner typeHolder = (Spinner) holder.getChildAt(1);
-
-            inputHolder.setText(name);
-
-            switch((String) this.informationHolder.get(name)){
-                case "String":
-                    typeHolder.setSelection(0);
-                    break;
-                case "Double":
-                    typeHolder.setSelection(1);
-                    break;
-                case "Integer":
-                    typeHolder.setSelection(2);
-                    break;
-                case "Boolean":
-                    typeHolder.setSelection(3);
-                    break;
-                case "Map":
-                    typeHolder.setSelection(4);
-                    break;
-                case "Image":
-                    typeHolder.setSelection(5);
-                    break;
-            }
-            holder.getChildAt(2).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getApplicationContext(), "Click!", Toast.LENGTH_LONG).show();
-                    LinearLayout holder = (LinearLayout) view.getParent();
-                    EditText inputHolder = (EditText) holder.getChildAt(0);
-                    informationHolder.remove(inputHolder.getText().toString());
-                    serviceInformationList.removeView(holder);
+    /**
+     * Once the activity opens, we need a list of all the branches available1
+     */
+    private void populateBranchSpinner(){
+        dbBranches.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //System.out.println(searchHolder);
+                    Employee branch = postSnapshot.getValue(Employee.class);
+                    branchList.add(branch);
                 }
-            });
-            this.serviceInformationList.addView(holder);
+                for(Employee tmp : branchList){
+                    branchNames.add(tmp.getAddress());
+                }
 
-
-        }
-    }
-
-    public void addNewServiceInformation(View view){
-        ServiceRequiredInformationRowElement holder = new ServiceRequiredInformationRowElement(this);
-        this.serviceInformationList.addView(holder);
-    }
-
-    public void submitAndExit(View v){
-        boolean informationFilled = true;
-        if(informationHolder == null) informationHolder = new HashMap<String,String>();
-        Toast.makeText(getApplicationContext(), Integer.toString(serviceInformationList.getChildCount()), Toast.LENGTH_LONG).show();
-        for(int i = 0; i < serviceInformationList.getChildCount(); i++){
-            LinearLayout viewHolder = (LinearLayout) serviceInformationList.getChildAt(i);
-            EditText inputHolder = (EditText) viewHolder.getChildAt(0);
-            Spinner typeHolder = (Spinner) viewHolder.getChildAt(1);
-
-            if(inputHolder.getText().toString() == null || inputHolder.getText().toString().equals("")){
-                informationFilled = false;
-            }else{
-                informationHolder.put(inputHolder.getText().toString(),typeHolder.getSelectedItem().toString());
+                //Set adapter from list of branch names to the spinner
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
+                        (getApplicationContext(), android.R.layout.simple_spinner_item,
+                                branchNames); //selected item will look like a spinner set from XML
+                spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                        .simple_spinner_dropdown_item);
+                branchNameSpinner.setAdapter(spinnerArrayAdapter);
             }
-        }
-
-        if(!informationFilled) {
-            Toast.makeText(getApplicationContext(), "Fill Out Information", Toast.LENGTH_LONG).show();
-        }else{
-            ref.child(this.serviceId).child("mapOfInformation").setValue(this.informationHolder);
-            finish();
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
     }
+
+    /**
+     * Once a branch is selected, this method will populate the spinner with services offered by said branch
+     * @param branchSelected
+     */
+    private void populateServiceOfferedSpinner(Employee branchSelected){
+        dbBranches.child(branchSelected.getID()).child("Offered").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    //System.out.println(searchHolder);
+                    branchServicesOffered.add(postSnapshot.getKey());
+                }
+
+                //Set adapter from list of branch names to the spinner
+                ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>
+                        (getApplicationContext(), android.R.layout.simple_spinner_item,
+                                branchNames); //selected item will look like a spinner set from XML
+                spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                        .simple_spinner_dropdown_item);
+                branchNameSpinner.setAdapter(spinnerArrayAdapter);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
+    }
+
+
+//    public void submitAndExit(View v){
+//        boolean informationFilled = true;
+//        if(informationHolder == null) informationHolder = new HashMap<String,String>();
+//        Toast.makeText(getApplicationContext(), Integer.toString(serviceInformationList.getChildCount()), Toast.LENGTH_LONG).show();
+//        for(int i = 0; i < serviceInformationList.getChildCount(); i++){
+//            LinearLayout viewHolder = (LinearLayout) serviceInformationList.getChildAt(i);
+//            EditText inputHolder = (EditText) viewHolder.getChildAt(0);
+//            Spinner typeHolder = (Spinner) viewHolder.getChildAt(1);
+//
+//            if(inputHolder.getText().toString() == null || inputHolder.getText().toString().equals("")){
+//                informationFilled = false;
+//            }else{
+//                informationHolder.put(inputHolder.getText().toString(),typeHolder.getSelectedItem().toString());
+//            }
+//        }
+//
+//        if(!informationFilled) {
+//            Toast.makeText(getApplicationContext(), "Fill Out Information", Toast.LENGTH_LONG).show();
+//        }else{
+//            ref.child(this.serviceId).child("mapOfInformation").setValue(this.informationHolder);
+//            finish();
+//        }
+//    }
 }
