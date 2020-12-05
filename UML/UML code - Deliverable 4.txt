@@ -26,7 +26,10 @@ class Branch
 
 class Customer
 {
-    isA UserAccount;
+  public void createServiceRequest(){}
+  public void rateABranch(){}
+  public void searchForBranch(){}
+  isA UserAccount;
   
   1 -- * ServiceRequests;
 }
@@ -51,12 +54,12 @@ class Service
 }
 
 class ServiceRequests{
-  branch;
-Service initialService;
-  
-Map responces;
-Boolean approved;
-customerID;
-1 -- * Service;
+  Integer id;
+  Integer branchID;
+  Service associatedService;
+  Map responses;
+  Boolean approved;
+  customerID;
+  1 -- * Service;
 }
 
