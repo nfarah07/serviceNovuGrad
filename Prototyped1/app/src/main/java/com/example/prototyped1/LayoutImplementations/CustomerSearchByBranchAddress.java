@@ -92,35 +92,29 @@ public class CustomerSearchByBranchAddress extends LinearLayout {
 
     public void searchByAddress(final String searchHolder){
         employeeList.clear();
-        employeeInfo.clear();
+        employeeInfo.clear();  //branch address list
         databaseRequests.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    System.out.println(searchHolder);
+                    //System.out.println(searchHolder);
                     Employee branch = postSnapshot.getValue(Employee.class);
 //                    String addressHolder = postSnapshot.child("address").getValue().toString();
                     if(branch.address != null){
                         final String holder = searchHolder;
                         if(branch.address.toLowerCase().contains(searchHolder.toLowerCase()))  {
-                            System.out.println("f");
+                            //System.out.println("f");
                             employeeList.add(branch);
                         }
-//                        System.out.prin
                     }
-
                 }
-
                 for(Employee tmp : employeeList){
                     employeeInfo.add(tmp.getAddress());
                     adapter.notifyDataSetChanged();
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
         });
     }
 
