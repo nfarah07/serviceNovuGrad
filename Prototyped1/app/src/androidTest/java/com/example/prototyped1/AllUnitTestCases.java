@@ -3,6 +3,7 @@ package com.example.prototyped1;
 import android.app.Activity;
 import android.util.Log;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
@@ -218,6 +219,29 @@ public class AllUnitTestCases {
         onView(withId(R.id.selectSearchByBranchAddress)).perform(click());
         onView(withId(R.id.editTextBranchAddress)).perform(pressBackUnconditionally());
         onView(withId(R.id.selectSearchByBranchAddress)).perform(pressBackUnconditionally());
+    }
+
+    @Test
+    public void testMakeServiceRequestSpinners() throws InterruptedException {
+
+
+        onView(withId(R.id.AlreadyUser)).perform(click());
+        onView(withId(R.id.Email)).perform(typeText(email));
+        onView(withId(R.id.Password)).perform(typeText(password));
+        onView(withId(R.id.Login)).perform(pressBackUnconditionally());
+        onView(withId(R.id.Login)).perform(click());
+
+        getActivityInstance();
+
+        while(!currentActivity.getClass().getName().equals(CustomerMainActivity.class.getName())){
+            Thread.sleep(1000);
+            getActivityInstance();
+        }
+        onView(withId(R.id.makeServiceRequestButton)).perform(click());
+        onView(withId(R.id.branchServiceSpinner)).perform(click());
+        Espresso.pressBackUnconditionally();
+        onView(withId(R.id.branchNameSpinner)).perform(click());
+        Espresso.pressBackUnconditionally();
     }
 
     /**
