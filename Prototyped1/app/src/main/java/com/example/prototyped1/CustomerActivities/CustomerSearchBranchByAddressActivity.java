@@ -80,10 +80,11 @@ public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
     }
 
     public void searchByAddress(final String searchHolder){
-        branchesReturned.clear();
         dbBranches.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //clear current list of branches
+                branchesReturned.clear();
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     //System.out.println(searchHolder);
                     Employee branch = postSnapshot.getValue(Employee.class);

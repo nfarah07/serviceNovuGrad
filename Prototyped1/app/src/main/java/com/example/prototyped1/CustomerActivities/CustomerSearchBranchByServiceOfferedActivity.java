@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.prototyped1.AdministratorActivities.CustomerCreateServiceRequestActivity;
 import com.example.prototyped1.ClassFiles.Employee;
 import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.LayoutImplementations.CustomerSearchBranchesList;
@@ -95,12 +94,12 @@ public class CustomerSearchBranchByServiceOfferedActivity extends AppCompatActiv
     }
 
     public void searchByService(final String serviceName) {
-        // clear list of branches
-        branchResults.clear();
         // add Value Event Listener for all the employees
         refBranches.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // clear current branch list
+                branchResults.clear();
                 // loop through every employee
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Employee branch = postSnapshot.getValue(Employee.class);
