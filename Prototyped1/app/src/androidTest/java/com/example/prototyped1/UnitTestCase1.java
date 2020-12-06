@@ -11,6 +11,7 @@ import com.example.prototyped1.CustomerActivities.CustomerMainActivity;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.pressBackUnconditionally;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -23,7 +24,7 @@ import org.junit.Test;
 
 import java.util.Collection;
 
-public class TestCase1 {
+public class UnitTestCase1 {
 
     @Rule //This is where the test starts
     public ActivityTestRule<SignUpActivity> signUpActivityTestRule = new ActivityTestRule<SignUpActivity>(SignUpActivity.class);
@@ -43,9 +44,7 @@ public class TestCase1 {
         onView(withId(R.id.Login)).perform(pressBackUnconditionally());
         onView(withId(R.id.Login)).perform(click());
 
-
         getActivityInstance();
-
 
         while(!currentActivity.getClass().getName().equals(CustomerMainActivity.class.getName())){
             Thread.sleep(1000);
@@ -56,6 +55,7 @@ public class TestCase1 {
 
     /**
      * A method that gets the current activity.
+     * Used from https://testyour.app/blog/get-current-activity
      * @return
      */
     public Activity getActivityInstance(){
