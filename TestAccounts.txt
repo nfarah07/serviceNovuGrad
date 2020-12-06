@@ -2,26 +2,38 @@ Admin:
 	Email: admin
 	Password: admin
 
-Ottawa East:
-	Email: OENovigrad@fakemail.com
-	Password: Password
-	First name: Ottawa East
-	Last name: Branch
+Branches:
 
-Customer:
-	Email: customer@email.com
-	Password: customer
-	First name: Customer
-	Last name: Test
+	Branch OttawaEast:
+		Email: OttawaEast@fakemail.com
+		Password: password
 
-Employee:
-	Email: employee@email.com
-	Password: employee
-	First name: Employee
-	Last name: Test
+	Branch ottawaSouth:
+		Email: ottawaSouth@fakemail.com
+		Password: password
 
-Customer2: Not in use
-	Email: dave@email.com
-	Password: SafePassword
-	First name: Dave
-	Last name: Jones
+	Branch Gatineau:
+		Email: gatineau.branch@fakemail.com
+		Password: password
+
+	Branch Sudbury:
+		Email: sudburyBranch@fakemail.com
+		Password: password
+
+Customers:
+
+	Facob FakeName:
+		Email: fakob.fake@fakemail.com
+		Password: password
+
+	Customer Test:
+		Email: customer@email.com
+		Password: customer
+
+	Billy BoSchmilly:
+		Email: runforthehills@heckmail.net
+		Password: 1234567
+
+	Megan Mullner:
+		Email: MolePeople@wily.ie
+		Password aaaaaaa
