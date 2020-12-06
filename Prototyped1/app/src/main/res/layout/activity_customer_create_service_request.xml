@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
@@ -9,76 +9,65 @@
     tools:context=".AdministratorActivities.CustomerCreateServiceRequestActivity">
 
 
-    <TextView
-        android:id="@+id/customerServiceRequestTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:text="@string/create_service_request_title"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/branchNameSpinner"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:background="#FBF9F9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customerServiceRequestInstructionsTextView" />
+        <TextView
+            android:id="@+id/customerServiceRequestTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29dp"
+            android:text="@string/create_service_request_title"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/branchServiceSpinner"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:background="#FBF9F9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/branchNameSpinner" />
+        <TextView
+            android:id="@+id/customerServiceRequestInstructionsTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/select_branch_by_name_and_service_title"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/submitButton"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="#B2C1F4"
-        android:foregroundTint="#B2C1F4"
-        android:onClick="submitAndExit"
-        android:text="@string/submit_service_request"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listOfCustomerInformation" />
+        <Spinner
+            android:id="@+id/branchNameSpinner"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:background="#FBF9F9" />
 
-    <ListView
-        android:id="@+id/listOfCustomerInformation"
-        android:layout_width="350dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="47dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/branchServiceSpinner" />
+        <Spinner
+            android:id="@+id/branchServiceSpinner"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#FBF9F9" />
 
-    <TextView
-        android:id="@+id/customerServiceRequestInstructionsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/select_branch_by_name_and_service_title"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customerServiceRequestTitle" />
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="#B2C1F4"
+            android:foregroundGravity="center"
+            android:foregroundTint="#B2C1F4"
+            android:gravity="center"
+            android:onClick="submitAndExit"
+            android:text="@string/submit_service_request"
+            android:textSize="24sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ListView
+            android:id="@+id/listOfCustomerInformation"
+            android:layout_width="350dp"
+            android:layout_height="400dp"
+            android:layout_marginTop="47dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -51,7 +51,6 @@ public class UnitTestCase7 {
         onView(withId(R.id.searchForABranchButton)).perform(click());
         onView(withId(R.id.selectSearchByServiceOffered)).perform(click());
         onView(withId(R.id.spinnerAllServices)).perform(click());
-
     }
 
     /**

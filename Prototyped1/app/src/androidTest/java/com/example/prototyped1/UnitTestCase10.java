@@ -3,7 +3,6 @@ package com.example.prototyped1;
 import android.app.Activity;
 import android.util.Log;
 
-import androidx.test.espresso.action.ViewActions;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
@@ -17,24 +16,24 @@ import java.util.Collection;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.pressBackUnconditionally;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
-public class UnitTestCase2 {
+public class UnitTestCase10 {
 
     @Rule //This is where the test starts
     public ActivityTestRule<SignUpActivity> signUpActivityTestRule = new ActivityTestRule<SignUpActivity>(SignUpActivity.class);
 
     private String email = "customer@email.com";
     private String password = "customer";
+    private String branchAddress = "34 Louis Lane";
 
     Activity currentActivity = null;
 
     @Test
-    public void testRatingABranch() throws InterruptedException {
+    public void testBackButton() throws InterruptedException {
 
 
         onView(withId(R.id.AlreadyUser)).perform(click());
@@ -49,13 +48,11 @@ public class UnitTestCase2 {
             Thread.sleep(1000);
             getActivityInstance();
         }
-        onView(withId(R.id.btnRateBranch)).perform(click());
-        Thread.sleep(5000);
-
-        onView(withId(R.id.listOfEmployees)).perform(longClick());
-        onView(withId(R.id.branchRatingBar)).perform(click());
-        onView(withId(R.id.submitRatingBtn)).perform(click());
-        Thread.sleep(1000);
+        onView(withId(R.id.makeServiceRequestButton)).perform(click());
+        onView(withId(R.id.branchNameSpinner)).perform(click());
+        pressBackUnconditionally();
+        onView(withId(R.id.branchServiceSpinner)).perform(click());
+        pressBackUnconditionally();
     }
 
     /**
