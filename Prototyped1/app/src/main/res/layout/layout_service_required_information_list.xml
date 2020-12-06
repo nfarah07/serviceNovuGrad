@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:foregroundTint="#FFFFFF"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/textViewServiceRequestInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="#D3D9EF" />
 
     <ImageView
         android:id="@+id/imageViewServiceInfo"
@@ -21,21 +23,26 @@
         android:id="@+id/editTextServiceInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:text="Name"
+        android:textColor="#FFFFFF" />
 
     <EditText
         android:id="@+id/editTextNumberServiceInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
 
     <CheckBox
         android:id="@+id/checkBoxServiceRequestInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="CheckBox"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

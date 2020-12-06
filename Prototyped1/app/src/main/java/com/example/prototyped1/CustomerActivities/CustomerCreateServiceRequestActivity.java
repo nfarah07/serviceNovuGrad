@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -308,7 +309,7 @@ public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
 
     public void submitAndExit(View v){
         boolean informationFilled = true;
-        boolean ran = false;
+        boolean filledInfo = true;
         Map<String, Object> formResponses = new HashMap<String, Object>();
         for(int i = 0; i < listOfCustomerInformation.getChildCount(); i++){
             View viewHolder = listOfCustomerInformation.getChildAt(i);
@@ -316,40 +317,50 @@ public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
             TextView textViewHolder = (TextView) viewHolder.findViewById(R.id.textViewServiceRequestInfo);
             EditText editTextServiceInfo = (EditText) viewHolder.findViewById(R.id.editTextServiceInfo);
             EditText editTextNumberServiceInfo = (EditText) viewHolder.findViewById(R.id.editTextNumberServiceInfo);
+            CheckBox checkBoxServiceRequestInfo = (CheckBox) viewHolder.findViewById(R.id.checkBoxServiceRequestInfo);
 
 
             if(editTextServiceInfo.getText().toString() == null && editTextNumberServiceInfo.getText().toString().equals("") && editTextNumberServiceInfo.getText().toString() == null && editTextServiceInfo.getText().toString().equals("")){
                 informationFilled = false;
             }else{
-                if(editTextServiceInfo.getVisibility() == View.VISIBLE){
+                if(editTextServiceInfo.getVisibility() == View.VISIBLE && editTextServiceInfo.getText().toString() != null && !editTextServiceInfo.getText().toString().equals("") ){
                     String holder = editTextServiceInfo.getText().toString();
                     formResponses.put(textViewHolder.getText().toString(), holder);
-                }else if(editTextNumberServiceInfo.getVisibility() == View.VISIBLE){
+                }else if(editTextNumberServiceInfo.getVisibility() == View.VISIBLE && editTextNumberServiceInfo.getText().toString() != null && !editTextNumberServiceInfo.getText().toString().equals("") ){
                     double numHolder = Double.parseDouble(editTextServiceInfo.getText().toString());
                     formResponses.put(textViewHolder.getText().toString(), numHolder);
+                }else if( checkBoxServiceRequestInfo.getVisibility() == View.VISIBLE){
+                    boolean boolHolder = (Boolean) checkBoxServiceRequestInfo.isChecked();
+                    formResponses.put(textViewHolder.getText().toString(), (Boolean) boolHolder);
+                }
+                else{
+                    informationFilled = false;
+                    Toast.makeText(getApplicationContext(), "Make sure to fill out " + textViewHolder.getText().toString(), Toast.LENGTH_LONG).show();
                 }
             }
         }
+        if(filledInfo){
+            if(listOfCustomerInformation.getChildCount() > 0){
+                mAuth = FirebaseAuth.getInstance();
+                ref = FirebaseDatabase.getInstance().getReference().child("ServiceRequests");
+                if(!informationFilled) {
+//                    Toast.makeText(getApplicationContext(), "Fill Out Information", Toast.LENGTH_LONG).show();
+                }else{
+                    String serviceRequestID = ref.push().getKey();
+                    String customerID = mAuth.getUid();
+                    String branchID = branchSelected.getID();
+                    String serviceName = serviceSelected.getName();
+                    ServiceRequest newServiceRequest = new ServiceRequest(serviceRequestID, customerID, branchID, serviceName,formResponses, "pending");
 
-        if(listOfCustomerInformation.getChildCount() > 0){
-            mAuth = FirebaseAuth.getInstance();
-            ref = FirebaseDatabase.getInstance().getReference().child("ServiceRequests");
-            if(!informationFilled) {
-                Toast.makeText(getApplicationContext(), "Fill Out Information", Toast.LENGTH_LONG).show();
-            }else{
-                String serviceRequestID = ref.push().getKey();
-                String customerID = mAuth.getUid();
-                String branchID = branchSelected.getID();
-                String serviceName = serviceSelected.getName();
-                ServiceRequest newServiceRequest = new ServiceRequest(serviceRequestID, customerID, branchID, serviceName,formResponses, "pending");
+                    ref.child(newServiceRequest.getId()).setValue(newServiceRequest);
+                    ref.child(newServiceRequest.getId()).child("FormResponses").setValue(formResponses);
+                    finish();
+                }
 
-                ref.child(newServiceRequest.getId()).setValue(newServiceRequest);
-                ref.child(newServiceRequest.getId()).child("FormResponses").setValue(formResponses);
-                finish();
+                ref = FirebaseDatabase.getInstance().getReference().child("Services");
             }
-
-            ref = FirebaseDatabase.getInstance().getReference().child("Services");
         }
+
 
     }
 }

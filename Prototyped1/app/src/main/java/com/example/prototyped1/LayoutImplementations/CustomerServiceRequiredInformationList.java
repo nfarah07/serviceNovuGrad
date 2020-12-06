@@ -68,7 +68,7 @@ public class CustomerServiceRequiredInformationList extends ArrayAdapter<String>
                     break;
                 case "Boolean":
                     textViewServiceRequestInfo.setText(keyNames.get(position));
-                    textViewServiceRequestInfo.setVisibility(GONE);
+                    editTextServiceInfo.setVisibility(GONE);
                     editTextNumberServiceInfo.setVisibility(GONE);
                     imageViewServiceInfo.setVisibility(GONE);
                     break;
