@@ -6,7 +6,9 @@
 
 [![CircleCI](https://circleci.com/gh/SEG2105-uottawa/seg2105f20-project-project_gr-31.svg?style=svg&circle-token=669e5eef00f3dc9a79a0b5acd3ceeee7b93800ee)](https://circleci.com/gh/SEG2105-uottawa/seg2105f20-project-project_gr-31)
 
-seg2105f20-project-project_gr-31
+#### GitHub Repository Link:
+
+ https://github.com/SEG2105-uottawa/seg2105f20-project-project_gr-31.git
 
 #### Group 5 Members:
 
