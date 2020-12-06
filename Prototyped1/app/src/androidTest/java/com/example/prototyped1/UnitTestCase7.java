@@ -29,12 +29,11 @@ public class UnitTestCase7 {
 
     private String email = "customer@email.com";
     private String password = "customer";
-    private String branchAddress = "34 Louis Lane";
 
     Activity currentActivity = null;
 
     @Test
-    public void testSearchByBranchAddressIntentOpens() throws InterruptedException {
+    public void testSearchByServicesOfferedIntentOpens() throws InterruptedException {
 
 
         onView(withId(R.id.AlreadyUser)).perform(click());

@@ -16,24 +16,24 @@ import java.util.Collection;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.longClick;
 import static androidx.test.espresso.action.ViewActions.pressBackUnconditionally;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
-public class UnitTestCase6 {
+public class UnitTestCase9 {
 
     @Rule //This is where the test starts
     public ActivityTestRule<SignUpActivity> signUpActivityTestRule = new ActivityTestRule<SignUpActivity>(SignUpActivity.class);
 
     private String email = "customer@email.com";
     private String password = "customer";
+    private String branchAddress = "34 Louis Lane";
 
     Activity currentActivity = null;
 
     @Test
-    public void testSearchByOpenHoursIntentOpens() throws InterruptedException {
+    public void testBackButton() throws InterruptedException {
 
 
         onView(withId(R.id.AlreadyUser)).perform(click());
@@ -49,7 +49,9 @@ public class UnitTestCase6 {
             getActivityInstance();
         }
         onView(withId(R.id.searchForABranchButton)).perform(click());
-        onView(withId(R.id.selectSearchByBranchHours)).perform(click());
+        onView(withId(R.id.selectSearchByBranchAddress)).perform(click());
+        onView(withId(R.id.editTextBranchAddress)).perform(pressBackUnconditionally());
+        onView(withId(R.id.selectSearchByBranchAddress)).perform(pressBackUnconditionally());
     }
 
     /**
