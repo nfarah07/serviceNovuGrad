@@ -37,4 +37,10 @@ public class CustomerMainActivity extends AppCompatActivity {
         intent.putExtra("CUSTOMER", fromCD);
         startActivity(intent);
     }
+
+    public void onMakeServiceRequest(View view) {
+        Intent intent = new Intent(getApplicationContext(), CustomerCreateServiceRequestActivity.class);
+        intent.putExtra("CUSTOMER", fromCD);
+        startActivity(intent);
+    }
 }

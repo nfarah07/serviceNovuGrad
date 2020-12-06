@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 //import com.example.prototyped1.AdministratorActivities.CustomerCreateServiceRequestActivity;
+import com.example.prototyped1.ClassFiles.Customer;
 import com.example.prototyped1.ClassFiles.Employee;
 import com.example.prototyped1.LayoutImplementations.CustomerSearchBranchesList;
 import com.example.prototyped1.R;
@@ -44,6 +45,7 @@ public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_search_by_branch_address);
+        Customer fromCD = (Customer) getIntent().getSerializableExtra("CUSTOMER");
         branchAddressSearch = (EditText) findViewById(R.id.editTextBranchAddress);
         branchesContainingSearch = (ListView) findViewById(R.id.listViewBranchesByAddress);
         dbBranches = FirebaseDatabase.getInstance().getReference("Employees");

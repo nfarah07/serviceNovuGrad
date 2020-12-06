@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.prototyped1.ClassFiles.Customer;
 import com.example.prototyped1.ClassFiles.Employee;
 import com.example.prototyped1.ClassFiles.Service;
 import com.example.prototyped1.LayoutImplementations.CustomerSearchBranchesList;
@@ -40,6 +41,7 @@ public class CustomerSearchBranchByServiceOfferedActivity extends AppCompatActiv
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_search_branch_by_service_offered);
+        final Customer fromCD = (Customer) getIntent().getSerializableExtra("CUSTOMER");
         listViewBranches = (ListView) findViewById(R.id.listViewBranchesOfferService);
         spinner = (Spinner) findViewById(R.id.spinnerAllServices);
         refBranches = FirebaseDatabase.getInstance().getReference("Employees");
@@ -87,6 +89,7 @@ public class CustomerSearchBranchByServiceOfferedActivity extends AppCompatActiv
                 Employee selectedBranch = branchResults.get(position);
                 Intent intent = new Intent(getApplicationContext(), CustomerCreateServiceRequestActivity.class);
                 intent.putExtra("EMPLOYEE_FOR_REQUEST", selectedBranch);
+                intent.putExtra("CUSTOMER", fromCD);
                 startActivity(intent);
                 return true;
             }

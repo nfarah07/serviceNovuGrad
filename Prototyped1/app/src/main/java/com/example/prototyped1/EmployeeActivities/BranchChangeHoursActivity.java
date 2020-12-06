@@ -59,7 +59,6 @@ import java.util.Map;
              @Override
              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  //For some reason this had to be done, I tried using Map<String, Object> and troubleshooted but nothing works
-                 //TODO Fix how to send maps to the database
                  GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {
                  };
                  timeRangeHolder = dataSnapshot.child("mapOfHours").getValue(genericTypeIndicator);
