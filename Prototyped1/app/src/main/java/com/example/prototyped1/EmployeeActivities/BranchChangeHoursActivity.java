@@ -52,7 +52,8 @@ import java.util.Map;
          //Get branch modifying hours
          this.branchChanging = (Employee) getIntent().getSerializableExtra("EMPLOYEE");
 
-         //Referenace database to get time range
+         //Reference database to get time range
+         // get reference to specific employee whose hours will be changed
          ref = FirebaseDatabase.getInstance().getReference().child("Employees").child(this.branchChanging.getID());
          ref.addValueEventListener(new ValueEventListener() {
              @Override
@@ -116,7 +117,7 @@ import java.util.Map;
                           "Saturday,Start", "Saturday,End",
                          "Sunday,Start", "Sunday,End")
          );
-
+         // for every day of the week
          for (String dayOfWeek : daysOfWeek) {
              BranchHourRowElementLinearLayout holder = new BranchHourRowElementLinearLayout(this, dayOfWeek);
 

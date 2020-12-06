@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.prototyped1.AdministratorActivities.CustomerCreateServiceRequestActivity;
@@ -59,13 +60,21 @@ public class CustomerSearchBranchByAddressActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) { }
         });
 
-        branchesContainingSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        branchesContainingSearch.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Employee selectedBranch = branchesReturned.get(position);
                 Intent intent = new Intent(getApplicationContext(), CustomerCreateServiceRequestActivity.class);
                 intent.putExtra("EMPLOYEE_FOR_REQUEST", selectedBranch);
                 startActivity(intent);
+                return true;
+            }
+        });
+
+        branchesContainingSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             }
         });
     }
