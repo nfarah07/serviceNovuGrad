@@ -9,7 +9,7 @@ public class Service {
 
     //Store the data types once so there's no confusion or mistakes later. We'll add more as needed
     public static final List<String> SERVICE_INFO_DATA_TYPES = new ArrayList<>(
-            Arrays.asList("String", "Double", "Integer", "Boolean", "Map", "Image")
+            Arrays.asList("String", "Double", "Integer", "Boolean", "Map", "File")
     );
 
     private String name;
@@ -17,7 +17,7 @@ public class Service {
     private double price;
     private String form;
     private String documents;
-    private Map<String,String> informationHolder; //This will hold key/val pairs for service request information, eg : "Full Name" : "String", "Age" : "int"
+    private Map<String,String> mapOfInformation; //This will hold key/val pairs for service request information, eg : "Full Name" : "String", "Age" : "int"
 
     public Service() {}
     public Service(String inName, String inID, double inPrice, String inForm, String inDocuments) {
@@ -26,6 +26,15 @@ public class Service {
         price = inPrice;
         form = inForm;
         documents = inDocuments;
+    }
+
+    public Service(String inName, String inID, double inPrice, String inForm, String inDocuments, Map<String,String> mapOfInformation) {
+        name = inName;
+        id = inID;
+        price = inPrice;
+        form = inForm;
+        documents = inDocuments;
+        this.mapOfInformation = mapOfInformation;
     }
 
     public String getName() {
@@ -45,14 +54,16 @@ public class Service {
     public String getDocuments() { return documents; }
 
     public void addElement(Map.Entry<String, String> newEntry){
-        this.informationHolder.put(newEntry.getKey(), newEntry.getValue());
+        this.mapOfInformation.put(newEntry.getKey(), newEntry.getValue());
     }
 
     public void removeElement(String key){
-        this.informationHolder.remove(key);
+        this.mapOfInformation.remove(key);
     }
 
     public void clearElements(){
-        this.informationHolder.clear();
+        this.mapOfInformation.clear();
     }
+
+    public Map<String,String> getmapOfInformation() { return this.mapOfInformation; }
 }
