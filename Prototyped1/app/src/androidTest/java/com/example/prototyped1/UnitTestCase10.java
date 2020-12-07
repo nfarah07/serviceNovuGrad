@@ -3,6 +3,7 @@ package com.example.prototyped1;
 import android.app.Activity;
 import android.util.Log;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import androidx.test.runner.lifecycle.Stage;
@@ -16,6 +17,7 @@ import java.util.Collection;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.pressBackUnconditionally;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -33,7 +35,7 @@ public class UnitTestCase10 {
     Activity currentActivity = null;
 
     @Test
-    public void testBackButton() throws InterruptedException {
+    public void testMakeServiceRequestSpinners() throws InterruptedException {
 
 
         onView(withId(R.id.AlreadyUser)).perform(click());
@@ -49,10 +51,10 @@ public class UnitTestCase10 {
             getActivityInstance();
         }
         onView(withId(R.id.makeServiceRequestButton)).perform(click());
-        onView(withId(R.id.branchNameSpinner)).perform(click());
-        pressBackUnconditionally();
         onView(withId(R.id.branchServiceSpinner)).perform(click());
-        pressBackUnconditionally();
+        Espresso.pressBackUnconditionally();
+        onView(withId(R.id.branchNameSpinner)).perform(click());
+        Espresso.pressBackUnconditionally();
     }
 
     /**
