@@ -325,11 +325,11 @@ public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
                     String holder = editTextServiceInfo.getText().toString();
                     formResponses.put(textViewHolder.getText().toString(), holder);
                 }else if(editTextNumberServiceInfo.getVisibility() == View.VISIBLE && editTextNumberServiceInfo.getText().toString() != null && !editTextNumberServiceInfo.getText().toString().equals("") ){
-                    double numHolder = Double.parseDouble(editTextServiceInfo.getText().toString());
+                    double numHolder = Double.parseDouble(editTextNumberServiceInfo.getText().toString());
                     formResponses.put(textViewHolder.getText().toString(), numHolder);
                 }else if( checkBoxServiceRequestInfo.getVisibility() == View.VISIBLE){
                     boolean boolHolder = (Boolean) checkBoxServiceRequestInfo.isChecked();
-                    formResponses.put(textViewHolder.getText().toString(), (Boolean) boolHolder);
+                    formResponses.put(textViewHolder.getText().toString(),  String.valueOf(boolHolder));
                 }
                 else{
                     informationFilled = false;
@@ -342,7 +342,7 @@ public class CustomerCreateServiceRequestActivity extends AppCompatActivity {
                 mAuth = FirebaseAuth.getInstance();
                 ref = FirebaseDatabase.getInstance().getReference().child("ServiceRequests");
                 if(!informationFilled) {
-//                    Toast.makeText(getApplicationContext(), "Fill Out Information", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Fill Out Information", Toast.LENGTH_LONG).show();
                 }else{
                     String serviceRequestID = ref.push().getKey();
                     String customerID = mAuth.getUid();

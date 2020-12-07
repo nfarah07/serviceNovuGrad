@@ -10,6 +10,7 @@
         android:id="@+id/textViewServiceRequestInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="TextView"
         android:textColor="#D3D9EF" />
 
@@ -25,18 +26,20 @@
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
         android:ems="10"
+        android:hint="Enter text here"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:textColorHint="#A6A6A6" />
 
     <EditText
         android:id="@+id/editTextNumberServiceInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Enter number here"
         android:inputType="number"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF" />
+        android:textColorHint="#A6A6A6" />
 
     <CheckBox
         android:id="@+id/checkBoxServiceRequestInfo"
