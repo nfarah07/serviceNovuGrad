@@ -1,4 +1,4 @@
-# SEG 2105 - Android Project (Fall 2020)
+#  Android Project 
 Note: Unit Tests located in Prototyped1\app\src\androidTest\java\com\example\prototyped1
 
 
