@@ -1,4 +1,7 @@
-#  Android Project 
+#  Android Project
+*ServiceNovigrad
+
+
 Note: Unit Tests located in Prototyped1\app\src\androidTest\java\com\example\prototyped1
 
 Description: App to service clinics with multiple branches where employees, customers and managers can use to update services, request new services for any branch and update clinic hours + more
