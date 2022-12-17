@@ -11,6 +11,7 @@ Tech stack:
 
 - Android dev tools
 
+
 Note: Unit Tests located in Prototyped1\app\src\androidTest\java\com\example\prototyped1
 
 Description: App to service clinics with multiple branches where employees, customers and managers can use to update services, request new services for any branch and update clinic hours + more
@@ -21,6 +22,6 @@ preview
 
 
 *appDocumentation for more details
+Note: Unit Tests located in Prototyped1\app\src\androidTest\java\com\example\prototyped1
 
-#### Group 5 Members:
 
