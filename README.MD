@@ -1,6 +1,15 @@
 #  Android Project
 ServiceNovigrad
 
+Tech stack: 
+
+- Firebase (database)
+
+
+- Java
+
+
+- Android dev tools
 
 Note: Unit Tests located in Prototyped1\app\src\androidTest\java\com\example\prototyped1
 
